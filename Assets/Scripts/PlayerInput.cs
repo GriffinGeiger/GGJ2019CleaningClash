@@ -31,7 +31,6 @@ public class PlayerInput
         m_rightJoystickMovement.x = Input.GetAxisRaw(m_playerTag + "_Right_Stick_x");
         m_rightJoystickMovement.y = Input.GetAxisRaw(m_playerTag + "_Right_Stick_y");
         if (m_playerTag == playerTag.Player1) ;
-            Debug.Log(m_playerTag + "Movement: " + "Left: " + m_leftJoystickMovement + " Right: " + m_rightJoystickMovement);
         //m_interactionButton     = Input.GetButtonDown( m_playerTag + "_interaction"); 
     }
 

@@ -10,19 +10,19 @@ public class Throwable : Item
     //Indicator if object has been thrown
     protected bool Thrown;
     //Zero movement vector for comparison
-    Vector3 stop = new Vector3(0, 0, 0);
+    Vector2 stop = new Vector2(0, 0);
 
     //Shoots the item in the given angle with specified strength
     void Throw (float strength, Vector2 angle)
     {
-        GetComponent<Rigidbody>().isKinematic = true;
-        GetComponent<Rigidbody>().AddForce(angle * strength);
+        GetComponent<Rigidbody2D>().isKinematic = true;
+        GetComponent<Rigidbody2D>().AddForce(angle * strength);
         Thrown = true;
     }
 
     void Update()
     {
-        if (GetComponent<Rigidbody>().velocity == stop)
+        if (GetComponent<Rigidbody2D>().velocity == stop)
         {
             InAir = false;
         }
