@@ -8,10 +8,9 @@ public class Item : MonoBehaviour
     public virtual Item Pickup()
     {
         //Binds the object so that it floats in the air
-        GetComponent<Rigidbody2D>().isKinematic = true;
 
         //Pick the object off of the ground
-        transform.Translate(0, 10, 0);
+        transform.Translate(0, 1, 0);
         return this;
     }
 }
