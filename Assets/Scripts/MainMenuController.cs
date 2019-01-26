@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MainMenuController : MonoBehaviour
 {
     public GameObject instructionsPanel;
     public GameObject creditsPanel;
+    public GameObject startBtn;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,7 @@ public class MainMenuController : MonoBehaviour
     {
         instructionsPanel.SetActive(false);
         creditsPanel.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(startBtn);
     }
 
     public void StartGame()
