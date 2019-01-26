@@ -5,7 +5,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
 
-    void Pickup()
+    public virtual void Pickup()
     {
         //Binds the object so that it floats in the air
         GetComponent<Rigidbody>().isKinematic = true;

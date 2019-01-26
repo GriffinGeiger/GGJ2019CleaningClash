@@ -39,4 +39,9 @@ public class Powerups : Item
     {
 
     }
+
+    public override void Pickup() 
+    {
+        Activate();
+    }
 }
