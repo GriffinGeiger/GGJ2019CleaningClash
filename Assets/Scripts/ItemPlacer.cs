@@ -30,9 +30,11 @@ public class ItemPlacer : MonoBehaviour
     }
 
     //Helper function to adjust selected point to the nearest point on the grid
-    private void PlaceItemNear(Vector3 selectedPoint)
+    public Vector3 PlaceItemNear(Vector3 selectedPoint)
     {
-        var finalPosition = grid.GetNearestPointOnGrid(selectedPoint);
+        return grid.GetNearestPointOnGrid(selectedPoint);
         
+        //Video was just creating a cube here so we need to figure something else out
+
     }
 }
