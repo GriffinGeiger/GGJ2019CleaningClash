@@ -7,7 +7,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerInput
 {
-    public enum playerTag { Player1 = 1 , Player2 =2 , Player3 = 3 , Player4 = 4 };
+    public enum playerTag { None = 0,  Player1 = 1 , Player2 =2 , Player3 = 3 , Player4 = 4 };
     public readonly playerTag m_playerTag; 
     public CharacterMovement m_controller;
     public bool allowCharacterMovement;
@@ -24,22 +24,23 @@ public class PlayerInput
 
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        Debug.Log("Controller x movement ");
-        m_leftJoystickMovement.x = Input.GetAxisRaw("Player" + m_playerTag + "_Joystick_x");
-        m_leftJoystickMovement.y = Input.GetAxisRaw("Player" + m_playerTag + "_Joystick_y");
-        m_rightJoystickMovement.x = Input.GetAxisRaw("Player" + m_playerTag + "_Joystick_x");
-        m_rightJoystickMovement.y = Input.GetAxisRaw("Player" + m_playerTag + "_Joystick_y");
-        m_interactionButton  = Input.GetButtonDown("Player" + m_playerTag + "_interaction"); 
+        Debug.Log("PlayerTag:" + m_playerTag);
+        m_leftJoystickMovement.x = Input.GetAxisRaw( m_playerTag + "_Left_Stick_x");
+        m_leftJoystickMovement.y = Input.GetAxisRaw( m_playerTag + "_Left_Stick_y");
+        m_rightJoystickMovement.x = Input.GetAxisRaw(m_playerTag + "_Right_Stick_x");
+        m_rightJoystickMovement.y = Input.GetAxisRaw(m_playerTag + "_Right_Stick_y");
+
+        Debug.Log(m_playerTag + "Movement: " + "Left: " + m_leftJoystickMovement + " Right: " + m_rightJoystickMovement);
+        //m_interactionButton     = Input.GetButtonDown( m_playerTag + "_interaction"); 
     }
 
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
         //might need to check state of game here
         if (allowCharacterMovement)
         {
-            Debug.Log("Movement is allowed");
             if (m_controller != null)
             {
                 m_controller.Move(m_leftJoystickMovement); //move character

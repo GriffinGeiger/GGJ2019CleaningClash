@@ -15,7 +15,7 @@ InputManager:
     altPositiveButton: 
     gravity: 0
     dead: 0
-    sensitivity: 0
+    sensitivity: 1000
     snap: 0
     invert: 0
     type: 0
@@ -30,8 +30,8 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
-    dead: 0
-    sensitivity: 0
+    dead: 0.001
+    sensitivity: 1000
     snap: 0
     invert: 0
     type: 2
@@ -46,8 +46,8 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
-    dead: 0
-    sensitivity: 0
+    dead: 0.001
+    sensitivity: 100
     snap: 0
     invert: 0
     type: 2
@@ -62,8 +62,8 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
-    dead: 0
-    sensitivity: 0
+    dead: 0.001
+    sensitivity: 100
     snap: 0
     invert: 0
     type: 2
@@ -110,8 +110,8 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
-    dead: 0
-    sensitivity: 0
+    dead: 0.001
+    sensitivity: 100
     snap: 0
     invert: 0
     type: 0
@@ -126,8 +126,8 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
-    dead: 0
-    sensitivity: 0
+    dead: 0.001
+    sensitivity: 100
     snap: 0
     invert: 0
     type: 0
@@ -137,18 +137,18 @@ InputManager:
     m_Name: Player1_Right_Stick_x
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 0
+    negativeButton: a
+    positiveButton: d
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
-    dead: 0
-    sensitivity: 0
+    dead: 0.001
+    sensitivity: 100
     snap: 0
     invert: 0
     type: 2
     axis: 3
-    joyNum: 0
+    joyNum: 1
   - serializedVersion: 3
     m_Name: Player1_Right_Stick_y
     descriptiveName: 
@@ -158,8 +158,8 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
-    dead: 0
-    sensitivity: 0
+    dead: 0.001
+    sensitivity: 100
     snap: 0
     invert: 0
     type: 0

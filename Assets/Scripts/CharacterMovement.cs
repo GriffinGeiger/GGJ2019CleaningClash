@@ -7,12 +7,14 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     public Rigidbody2D m_rigidbody;
-    public PlayerInput.playerTag playerTag; //Which Player controls this character?
+    public PlayerInput.playerTag m_playerTag; //Which Player controls this character?
+    public float m_speedFactor;
 
     private float m_stunTime = 0;
     private bool m_stunned = false;
     //public Item m_heldItem;
     private Vector2 m_aimVector;
+
     
     
 
@@ -53,7 +55,8 @@ public class CharacterMovement : MonoBehaviour
             velocity = Vector2.zero;
         }
         //if it is possible to move then move according to the input
-        m_rigidbody.velocity = velocity;
+        Debug.Log("New velocity for " + m_playerTag + " : " + (velocity * m_speedFactor));
+        m_rigidbody.AddForce(velocity* m_speedFactor);
     }
 
     public void Stun(float stunTime) //other things call this to stun the character

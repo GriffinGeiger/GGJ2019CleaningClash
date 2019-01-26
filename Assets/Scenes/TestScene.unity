@@ -307,10 +307,6 @@ MonoBehaviour:
     allowCharacterMovement: 0
   - m_controller: {fileID: 0}
     allowCharacterMovement: 0
-  - m_controller: {fileID: 0}
-    allowCharacterMovement: 0
-  - m_controller: {fileID: 0}
-    allowCharacterMovement: 0
 --- !u!4 &1717672223
 Transform:
   m_ObjectHideFlags: 0
@@ -391,6 +387,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 431115943897772002, guid: 599e65f81cf5909449474db2afa7a0cb,
+        type: 3}
+      propertyPath: playerTag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 431115943897772002, guid: 599e65f81cf5909449474db2afa7a0cb,
+        type: 3}
+      propertyPath: m_speedFactor
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 599e65f81cf5909449474db2afa7a0cb, type: 3}
