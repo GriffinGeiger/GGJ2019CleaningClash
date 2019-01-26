@@ -26,6 +26,7 @@ public class PlayerInput
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Controller x movement ");
         m_leftJoystickMovement.x = Input.GetAxisRaw("Player" + m_playerTag + "_Joystick_x");
         m_leftJoystickMovement.y = Input.GetAxisRaw("Player" + m_playerTag + "_Joystick_y");
         m_rightJoystickMovement.x = Input.GetAxisRaw("Player" + m_playerTag + "_Joystick_x");
