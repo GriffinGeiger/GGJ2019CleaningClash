@@ -7,8 +7,10 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     public Rigidbody2D m_rigidbody;
-    public PlayerInput.playerTag m_playerTag; //Which Player controls this character?
+    public Transform m_aimArrowTransform;
+    public PlayerInput.playerTag m_playerTag; //defines which player controls this character
     public float m_speedFactor;
+    public float m_arrowDistance;
 
     private GameManager gm;
 
@@ -16,6 +18,7 @@ public class CharacterMovement : MonoBehaviour
     private bool m_stunned = false;
     //public Item m_heldItem;
     private Vector2 m_aimVector;
+    
 
     private void Awake()
     {
@@ -68,6 +71,17 @@ public class CharacterMovement : MonoBehaviour
     public void Aim(Vector2 aimVector)
     {
         //move arrow that denotes aiming
+
+        //Rotates around this (the character's) transform
+        //About the z axis
+        //for arctan(x/y) degrees, which is the angle provided by the aimvector
+        /*  m_aimArrowTransform.RotateAround(transform.position, Vector3.back, 
+              Mathf.Atan(aimVector.y / aimVector.x)); 
+              */
+        float angle = Mathf.Atan2(aimVector.y,aimVector.x) * Mathf.Rad2Deg;
+        Debug.Log("Angle: " + angle);
+        m_aimArrowTransform.rotation = Quaternion.AngleAxis(angle, Vector3.back);
+        m_aimArrowTransform.position = transform.position + Quaternion.AngleAxis(angle, Vector3.back) * new Vector3(m_arrowDistance, 0, 0);
 
     }
 
