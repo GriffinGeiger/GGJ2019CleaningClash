@@ -26,13 +26,12 @@ public class PlayerInput
     // Update is called once per frame
     public void Update()
     {
-        Debug.Log("PlayerTag:" + m_playerTag);
         m_leftJoystickMovement.x = Input.GetAxisRaw( m_playerTag + "_Left_Stick_x");
         m_leftJoystickMovement.y = Input.GetAxisRaw( m_playerTag + "_Left_Stick_y");
         m_rightJoystickMovement.x = Input.GetAxisRaw(m_playerTag + "_Right_Stick_x");
         m_rightJoystickMovement.y = Input.GetAxisRaw(m_playerTag + "_Right_Stick_y");
-
-        Debug.Log(m_playerTag + "Movement: " + "Left: " + m_leftJoystickMovement + " Right: " + m_rightJoystickMovement);
+        if (m_playerTag == playerTag.Player1) ;
+            Debug.Log(m_playerTag + "Movement: " + "Left: " + m_leftJoystickMovement + " Right: " + m_rightJoystickMovement);
         //m_interactionButton     = Input.GetButtonDown( m_playerTag + "_interaction"); 
     }
 
