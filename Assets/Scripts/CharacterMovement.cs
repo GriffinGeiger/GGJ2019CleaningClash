@@ -8,9 +8,11 @@ public class CharacterMovement : MonoBehaviour
 {
     public Rigidbody2D m_rigidbody;
     public Transform m_aimArrowTransform;
+    public SpriteRenderer m_aimArrowSprite;
     public PlayerInput.playerTag m_playerTag; //defines which player controls this character
     public float m_speedFactor;
     public float m_arrowDistance;
+    public float m_aimDeadZone = .1f;
 
     private GameManager gm;
 
@@ -52,37 +54,48 @@ public class CharacterMovement : MonoBehaviour
         //if hand is empty, fill hand 
         if(/*m_heldItem == null*/ false)
         {
-
-        }
-        else //holding item
-        {
-            if(/*In range of item*/false)
+            if (/*In range of item*/false)
             {
                 //call pick up on item
             }
-
         }
-
-        //in range of object and hands are empty?
-        //pick up object
-        
+        else //holding item
+        {
+            if(/*In range of bed*/false)
+            {
+                //Stash into bed
+            }
+            //Throw button takes care of throwing so no action here
+        }
     }
 
-    public void Aim(Vector2 aimVector)
+    public void Aim(Vector2 aimVector) //Move arrow that denotes aiming
     {
-        //move arrow that denotes aiming
-
         //Rotates around this (the character's) transform
         //About the z axis
-        //for arctan(x/y) degrees, which is the angle provided by the aimvector
-        /*  m_aimArrowTransform.RotateAround(transform.position, Vector3.back, 
-              Mathf.Atan(aimVector.y / aimVector.x)); 
-              */
-        float angle = Mathf.Atan2(aimVector.y,aimVector.x) * Mathf.Rad2Deg;
-        Debug.Log("Angle: " + angle);
-        m_aimArrowTransform.rotation = Quaternion.AngleAxis(angle, Vector3.back);
-        m_aimArrowTransform.position = transform.position + Quaternion.AngleAxis(angle, Vector3.back) * new Vector3(m_arrowDistance, 0, 0);
+        if ((Mathf.Abs(aimVector.x) <= m_aimDeadZone) && (Mathf.Abs(aimVector.y) <= m_aimDeadZone)) //inside dead zone
+        {
+            //snap arrow to forward position
+            float angle = 0f;
+            m_aimArrowTransform.rotation = Quaternion.AngleAxis(angle, Vector3.back); //update arrow rotation
+            m_aimArrowTransform.position = transform.position +
+                Quaternion.AngleAxis(angle, Vector3.back) * new Vector3(m_arrowDistance, 0, 0);
+            //disable arrow graphic
+            m_aimArrowSprite.enabled = false;
+        }
+        else  //Receiving active aiming input
+        {
+            if(!m_aimArrowSprite.enabled) //if the sprite is off because it was neutral last frame
+            {
+                m_aimArrowSprite.enabled = true;
+            }
 
+            //set arrow to angle 
+            float angle = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg; //find angle of aimVector in degrees
+            m_aimArrowTransform.rotation = Quaternion.AngleAxis(angle, Vector3.back); //update arrow rotation
+            m_aimArrowTransform.position = transform.position +
+                Quaternion.AngleAxis(angle, Vector3.back) * new Vector3(m_arrowDistance, 0, 0);//update arrow position
+        }
     }
 
     public void Move(Vector2 velocity) //should be called in FixedUpdate
@@ -93,7 +106,6 @@ public class CharacterMovement : MonoBehaviour
             velocity = Vector2.zero;
         }
         //if it is possible to move then move according to the input
-        Debug.Log("New velocity for " + m_playerTag + " : " + (velocity * m_speedFactor));
         m_rigidbody.AddForce(velocity* m_speedFactor);
     }
 
