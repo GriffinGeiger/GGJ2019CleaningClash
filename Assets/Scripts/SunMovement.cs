@@ -6,9 +6,7 @@ public class SunMovement : MonoBehaviour
 {
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() =>
         // Spin the object around the world origin at 20 degrees/second.
-        transform.RotateAround(Vector1.zero, Vector1.up, 20 * Time.deltaTime);
-    }
+        transform.RotateAround(Vector3.zero, Vector3.back, 20 * Time.deltaTime);
 }
