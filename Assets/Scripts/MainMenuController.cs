@@ -36,7 +36,7 @@ public class MainMenuController : MonoBehaviour
 
     public void StartGame()
     {
-        //SceneManager.LoadScene("BedroomSetupScene");
+        SceneManager.LoadScene("GameScene");
     }
 
     public void ExitGame()
