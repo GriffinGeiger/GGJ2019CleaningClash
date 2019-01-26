@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Written by Griffin Geiger
+
 public class CharacterMovement : MonoBehaviour
 {
     public Rigidbody2D m_rigidbody;
