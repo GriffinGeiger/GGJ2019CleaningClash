@@ -399,7 +399,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1495167168}
         m_MethodName: DisplayCredits
         m_Mode: 1
         m_Arguments:
@@ -528,7 +528,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1495167168}
         m_MethodName: DisplayInstructions
         m_Mode: 1
         m_Arguments:
@@ -1572,10 +1572,10 @@ MonoBehaviour:
   m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
+  m_HorizontalAxis: Player1_left_stick_x
+  m_VerticalAxis: Player1_left_stick_y
+  m_SubmitButton: Player1_A_Button
+  m_CancelButton: Player1_B_Button
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
@@ -1819,7 +1819,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1495167168}
         m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
