@@ -8,6 +8,7 @@ public class CharacterMovement : MonoBehaviour
     private float m_stunTime = 0;
     private bool m_stunned = false;
     //public Item m_heldItem;
+    private Vector2 m_aimVector;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,11 @@ public class CharacterMovement : MonoBehaviour
         
     }
 
+    public void Aim(Vector2 aimVector)
+    {
+        //move arrow that denotes aiming
+
+    }
 
     public void Move(Vector2 velocity) //should be called in FixedUpdate
     {
