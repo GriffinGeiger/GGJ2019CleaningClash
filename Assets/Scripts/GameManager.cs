@@ -11,8 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public PlayerInput[] playerInputs = new PlayerInput[NumberOfPlayers];
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         for (int i = 0; i < NumberOfPlayers; i++) //make player input classes for each controller
         {
@@ -27,6 +26,11 @@ public class GameManager : MonoBehaviour
 
     public void allowCharacterMovement()
     {
+        foreach( CharacterMovement cm in FindObjectsOfType<CharacterMovement>())
+        {
+            cm.ConnectToPlayerInput(); //send references from characterMovements to PlayerInputs. Ex: Player1 character tells Player1's controller who it is
+        }
+
         foreach (PlayerInput pi in playerInputs)
         {
             pi.allowCharacterMovement = true;

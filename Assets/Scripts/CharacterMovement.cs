@@ -10,14 +10,38 @@ public class CharacterMovement : MonoBehaviour
     public PlayerInput.playerTag m_playerTag; //Which Player controls this character?
     public float m_speedFactor;
 
+    private GameManager gm;
+
     private float m_stunTime = 0;
     private bool m_stunned = false;
     //public Item m_heldItem;
     private Vector2 m_aimVector;
 
-    
-    
+    private void Awake()
+    {
+        gm = FindObjectOfType<GameManager>();
+        ConnectToPlayerInput();
+    }
 
+    public void ConnectToPlayerInput()
+    {
+        if (m_playerTag == PlayerInput.playerTag.None)
+        {
+            Debug.LogWarning("PlayerTag set to no player. Add playerTag in prefab. Ex: Player1, Player2");
+        }
+        else
+        {
+            PlayerInput player = gm.getPlayerInput((int)m_playerTag);
+            if (player.m_controller == null)
+            {
+                player.m_controller = this;
+            }
+            else
+            {
+                Debug.LogWarning("Replacing PlayerController that is already connected to PlayerInput");
+            }
+        }
+    }
     public void Interact()
     {
         //check different things that can be interacted with and interact accordingly
