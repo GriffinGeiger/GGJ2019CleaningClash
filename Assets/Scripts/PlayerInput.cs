@@ -4,12 +4,13 @@ using UnityEngine;
 
 // Written by Griffin Geiger
 
-public class PlayerInput : MonoBehaviour
+[System.Serializable]
+public class PlayerInput
 {
     public enum playerTag { Player1 = 1 , Player2 =2 , Player3 = 3 , Player4 = 4 };
     public readonly playerTag m_playerTag; 
     public CharacterMovement m_controller;
-    
+    public bool allowCharacterMovement;
 
     private Vector2 m_leftJoystickMovement= new Vector2();
     private Vector2 m_rightJoystickMovement = new Vector2();
@@ -35,16 +36,23 @@ public class PlayerInput : MonoBehaviour
     private void FixedUpdate()
     {
         //might need to check state of game here
-        if (m_controller != null)
+        if (allowCharacterMovement)
         {
-            m_controller.Move(m_leftJoystickMovement); //move character
-            m_controller.Aim(m_rightJoystickMovement);
-        }
+            Debug.Log("Movement is allowed");
+            if (m_controller != null)
+            {
+                m_controller.Move(m_leftJoystickMovement); //move character
+                m_controller.Aim(m_rightJoystickMovement);
 
-        if (m_interactionButton)
-        {
-            m_controller.Interact();
-            m_interactionButton = false;
+                if (m_interactionButton)
+                {
+                    m_controller.Interact();
+                    m_interactionButton = false;
+                }
+            }
+            else
+                Debug.LogError("PlayerInput" + m_playerTag + " does not have a reference to CharacterMovement instance but is allowing movement.");
         }
     }
+
 }
