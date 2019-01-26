@@ -38,7 +38,7 @@ InputManager:
     axis: 0
     joyNum: 2
   - serializedVersion: 3
-    m_Name: Player_1_Left_Stick_y
+    m_Name: Player1_Left_Stick_y
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: s
@@ -54,7 +54,7 @@ InputManager:
     axis: 1
     joyNum: 1
   - serializedVersion: 3
-    m_Name: Player_2_Left_Stick_y
+    m_Name: Player2_Left_Stick_y
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: down
