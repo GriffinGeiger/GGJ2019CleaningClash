@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
 // Update is called once per frame
 void Update()
     {
+        if (Input.GetButtonDown("Player1_A_Button"))
+            Debug.Log("Pressing A Button");
         foreach (PlayerInput pi in playerInputs)
             pi.Update();
     }
