@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//written by Griffin Geiger 
+
 public class GameManager : MonoBehaviour
 {
-    public const int NumberOfPlayers = 4;
+    public const int NumberOfPlayers = 2;
 
     [SerializeField]
     public PlayerInput[] playerInputs = new PlayerInput[NumberOfPlayers];
@@ -53,7 +55,13 @@ public class GameManager : MonoBehaviour
 // Update is called once per frame
 void Update()
     {
+        foreach (PlayerInput pi in playerInputs)
+            pi.Update();
+    }
 
-
+    private void FixedUpdate()
+    {
+        foreach (PlayerInput pi in playerInputs)
+            pi.FixedUpdate();
     }
 }
