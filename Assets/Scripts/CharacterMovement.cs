@@ -53,16 +53,16 @@ public class CharacterMovement : MonoBehaviour
     public void Interact()
     {
         //check different things that can be interacted with and interact accordingly
-
-        //if hand is empty, fill hand 
         Collider2D[] nearbyInteractables =
             Physics2D.OverlapAreaAll(m_topCornerOfOverlap, m_bottomCornerOfOverlap);
-
-        //search nearby interactables for powerups
 
         //search for highest priority pickup
         Collider2D foundInteractable = FindHighestPriorityInteractable(nearbyInteractables);
 
+        if (foundInteractable == null) //didn't find any interactables
+            return;
+
+        //if hand is empty, fill hand
         if(m_heldItem == null)
         {
             Item foundItem = foundInteractable.GetComponent<Item>();
@@ -75,12 +75,15 @@ public class CharacterMovement : MonoBehaviour
                 m_heldItem = foundInteractable.GetComponent<Bed>().Retrieve();
             }
         }
-        else //holding item
+        else //holding item, unload into bed or do nothing
         {
             Bed bed = foundInteractable.GetComponent<Bed>();
             if (bed != null)//Note: if holding an item and there's another item near the bed, you will not be able to stash
             {
-                bed.Store(m_heldItem);
+                if (bed.Store(m_heldItem)) //returns true if successfully stored
+                {
+                    m_heldItem = null; //no longer want to hold this item since it has been stored
+                }
             }
                     //Throw button takes care of throwing so no action here
         }

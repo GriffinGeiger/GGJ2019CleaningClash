@@ -64,8 +64,9 @@ public class Powerups : Item
         //Distracts (stuns) the player that picks it up
     }
 
-    public override void Pickup() 
+    public override Item Pickup() 
     {
         Activate();
+        return null; //this one doesn't return anything because you can't hold powerups
     }
 }
