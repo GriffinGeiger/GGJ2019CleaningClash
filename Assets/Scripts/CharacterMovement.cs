@@ -13,14 +13,17 @@ public class CharacterMovement : MonoBehaviour
     public float m_speedFactor;
     public float m_arrowDistance;
     public float m_aimDeadZone = .1f;
+    public Vector2 m_topCornerOfOverlap;
+    public Vector2 m_bottomCornerOfOverlap;
 
     private GameManager gm;
-
+    private Item m_heldItem;
     private float m_stunTime = 0;
     private bool m_stunned = false;
     //public Item m_heldItem;
     private Vector2 m_aimVector;
-    
+
+    private enum interactableType { None, Bed, Battery, SpecialThrowable, CommonThrowable }
 
     private void Awake()
     {
@@ -52,20 +55,34 @@ public class CharacterMovement : MonoBehaviour
         //check different things that can be interacted with and interact accordingly
 
         //if hand is empty, fill hand 
-        if(/*m_heldItem == null*/ false)
+        Collider2D[] nearbyInteractables =
+            Physics2D.OverlapAreaAll(m_topCornerOfOverlap, m_bottomCornerOfOverlap);
+
+        //search nearby interactables for powerups
+
+        //search for highest priority pickup
+        Collider2D foundInteractable = FindHighestPriorityInteractable(nearbyInteractables);
+
+        if(m_heldItem == null)
         {
-            if (/*In range of item*/false)
+            Item foundItem = foundInteractable.GetComponent<Item>();
+            if(foundItem != null)
             {
-                //call pick up on item
+                m_heldItem = foundItem.Pickup();
+            }
+            else
+            {
+                m_heldItem = foundInteractable.GetComponent<Bed>().Retrieve();
             }
         }
         else //holding item
         {
-            if(/*In range of bed*/false)
+            Bed bed = foundInteractable.GetComponent<Bed>();
+            if (bed != null)//Note: if holding an item and there's another item near the bed, you will not be able to stash
             {
-                //Stash into bed
+                bed.Store(m_heldItem);
             }
-            //Throw button takes care of throwing so no action here
+                    //Throw button takes care of throwing so no action here
         }
     }
 
@@ -121,5 +138,49 @@ public class CharacterMovement : MonoBehaviour
         yield return new WaitForSeconds(m_stunTime);
         m_stunTime = 0;
         m_stunned = false;
+    }
+
+    //if somethings screwed its probably this one
+
+    //Returns highest priority interactable (throwable, bed, powerup). Returns null if no interactable
+    //Priorities:  powerups->throwables->Battery->Bed
+    private Collider2D FindHighestPriorityInteractable(Collider2D[] nearbyInteractables)
+    {
+        Collider2D highestPriority = null;
+        interactableType highPriorityType = interactableType.None;
+
+        foreach (Collider2D interactable in nearbyInteractables)
+        {
+            if (interactable.GetComponent<Throwable>() != null)
+            {
+                if (interactable.GetComponent<Socks>() != null || //check if special throwable
+                    interactable.GetComponent<Legos>() != null)
+                {
+                    highestPriority = interactable;
+                    // no need to assign highPriorityType since it all ends here
+                    return highestPriority; // there is no higher priority than these objects so go ahead and return
+                }
+                else //this is a common throwable
+                {
+                    highestPriority = interactable; //continue to see if there is a higher priority item
+                    highPriorityType = interactableType.CommonThrowable;
+                }
+            }
+            else
+            if ((highPriorityType < interactableType.Battery) && //would battery be higher priority than current item
+                interactable.GetComponent<Battery>())
+            {
+                highestPriority = interactable;
+                highPriorityType = interactableType.Battery;
+            }
+            else
+            if ((highPriorityType < interactableType.Bed) && //would bed be a higher priority than current item
+                interactable.GetComponent<Bed>() != null)
+            {
+                highestPriority = interactable;// continue to see if there is higher priority item
+                highPriorityType = interactableType.Bed;
+            }
+        }
+        return highestPriority; //Went through all interactables and found highest priority
     }
 }

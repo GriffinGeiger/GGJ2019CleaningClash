@@ -32,7 +32,7 @@ public class Bed : MonoBehaviour
 
     int StorageLimit = 3;
 
-    bool Store (Item i)
+    public bool Store (Item i)
     {
         if (Stash.Count < StorageLimit)
         {
