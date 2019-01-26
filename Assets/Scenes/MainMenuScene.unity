@@ -1644,6 +1644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instructionsPanel: {fileID: 283318070}
   creditsPanel: {fileID: 408986463}
+  startBtn: {fileID: 1625321214}
 --- !u!1 &1625321214
 GameObject:
   m_ObjectHideFlags: 0
