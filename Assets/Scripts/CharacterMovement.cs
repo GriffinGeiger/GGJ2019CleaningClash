@@ -13,8 +13,8 @@ public class CharacterMovement : MonoBehaviour
     public float m_speedFactor;
     public float m_arrowDistance;
     public float m_aimDeadZone = .1f;
-    public Vector2 m_topCornerOfOverlap;
-    public Vector2 m_bottomCornerOfOverlap;
+    public Vector2 m_topCornerOfOverlap; //offset from character transform so it follows
+    public Vector2 m_bottomCornerOfOverlap; //ditto
 
     private GameManager gm;
     private Item m_heldItem;
@@ -54,7 +54,8 @@ public class CharacterMovement : MonoBehaviour
     {
         //check different things that can be interacted with and interact accordingly
         Collider2D[] nearbyInteractables =
-            Physics2D.OverlapAreaAll(m_topCornerOfOverlap, m_bottomCornerOfOverlap);
+            Physics2D.OverlapAreaAll((Vector2) transform.position + m_topCornerOfOverlap,(Vector2) transform.position - m_bottomCornerOfOverlap);
+        //Note from last line: topCornerOfOverlap and bottom are offsets from position
 
         //search for highest priority pickup
         Collider2D foundInteractable = FindHighestPriorityInteractable(nearbyInteractables);
@@ -120,6 +121,9 @@ public class CharacterMovement : MonoBehaviour
 
     public void Move(Vector2 velocity) //should be called in FixedUpdate
     {
+        //Used to visualize the overlap box completely unrelated to moving
+        Debug.DrawLine(transform.position + (Vector3) m_topCornerOfOverlap,transform.position - (Vector3) m_bottomCornerOfOverlap);
+
         //check status effects to see if possible to move
         if(m_stunned)
         {
