@@ -13,8 +13,10 @@ public class Dog : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(doorLocation.x, doorLocation.y, 0);
+        //Spawn Dog off screen directly below door
+        transform.position = new Vector3(doorLocation.x, doorLocation.y- transform.GetComponent<Mesh>().bounds.size.y, 0);
         StartCoroutine("Search");
+        //Remove asset to end event
         Destroy(this);
     }
 
