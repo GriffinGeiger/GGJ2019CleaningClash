@@ -2,25 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Written by Griffin Geiger
+
 public class CharacterMovement : MonoBehaviour
 {
     public Rigidbody2D m_rigidbody;
+    public PlayerInput.playerTag playerTag; //Which Player controls this character?
+
     private float m_stunTime = 0;
     private bool m_stunned = false;
     //public Item m_heldItem;
     private Vector2 m_aimVector;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
+    
 
     public void Interact()
     {

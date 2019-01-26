@@ -146,9 +146,9 @@ InputManager:
     sensitivity: 0
     snap: 0
     invert: 0
-    type: 0
+    type: 2
     axis: 3
-    joyNum: 1
+    joyNum: 0
   - serializedVersion: 3
     m_Name: Player1_Right_Stick_y
     descriptiveName: 
