@@ -55,12 +55,16 @@ public class GameManager : MonoBehaviour
         playerInputs[playerNumber - 1].allowCharacterMovement = false;
     }
 
+    enum MatchStates { Setup, Mom_Intro, Gameplay, Mom_Outro, Scoring}
 
 // Update is called once per frame
 void Update()
     {
         foreach (PlayerInput pi in playerInputs)
             pi.Update();
+
+        
+
     }
 
     private void FixedUpdate()
