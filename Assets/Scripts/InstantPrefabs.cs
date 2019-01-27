@@ -9,7 +9,12 @@ public class InstantPrefabs : MonoBehaviour
 
     public static string prefabPath = "Assets/Prefabs";
     public static string commonThrowablePath = prefabPath + "/CommonThrowablePrefabs";
-
+    public static string player1Path = prefabPath + "/Characters/Character_Player1.prefab";
+    public static string player2Path = prefabPath + "/Characters/Test_Character_Player2 Variant.prefab";
+    public static string bedPath;
+    public static string deskPath;
+    public static string fanPath;
+    public static string dresserPath;
 
     public static GameObject SpawnRandomCommonThrowable(Vector3 position)
     {
