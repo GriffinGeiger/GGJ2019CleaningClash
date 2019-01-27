@@ -34,6 +34,7 @@ public class PlayerInput
         m_rightJoystickMovement.y = Input.GetAxisRaw(m_playerTag + "_Right_Stick_y");
         m_interactionButton     = Input.GetButtonDown( m_playerTag + "_A_Button");
         m_throwButton = Input.GetAxisRaw(m_playerTag + "_Right_Trigger") >= m_triggerPullThreshold;
+        Debug.Log("stick:" + m_rightJoystickMovement);
 
     }
 

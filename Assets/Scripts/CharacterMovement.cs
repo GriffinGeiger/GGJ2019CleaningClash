@@ -18,6 +18,7 @@ public class CharacterMovement : MonoBehaviour
     public Vector2 m_topCornerOfOverlap; //offset from character transform so it follows
     public Vector2 m_bottomCornerOfOverlap; //ditto
     public bool onFurniture;
+    public bool facingLeft;
 
     private GameManager gm;
     [SerializeField]
@@ -134,6 +135,8 @@ public class CharacterMovement : MonoBehaviour
         {
             //snap arrow to forward position
             float angle = 0f;
+            if (facingLeft)
+                angle = 180f;
             m_aimArrowTransform.rotation = Quaternion.AngleAxis(angle, Vector3.back); //update arrow rotation
             m_aimArrowTransform.position = transform.position +
                 Quaternion.AngleAxis(angle, Vector3.back) * new Vector3(m_arrowDistance, 0, 0);
