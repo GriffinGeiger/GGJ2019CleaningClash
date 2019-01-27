@@ -20,6 +20,20 @@ public class Dog : MonoBehaviour
         Destroy(this);
     }
 
+    IEnumerator RaidBed(Bed b)
+    {
+        //Pull all items out
+        while (true)
+        {
+            Item i = b.Retrieve();
+            if (!i)
+                break;
+            Vector3 tossingVector = new Vector3(Random.Range(50, 100), Random.Range(50, 100), 0);
+            b.transform.GetComponent<Rigidbody2D>().AddForce(tossingVector);
+        }
+        yield return new WaitForSeconds(2.0f);
+    }
+
     IEnumerator Search()
     {
        //Move dog out in to the world first
@@ -33,13 +47,7 @@ public class Dog : MonoBehaviour
             angle = Mathf.Atan2(distance.y, distance.x);
             while (transform.position != b.transform.position)
                 StartCoroutine("MoveTo");
-            //Pull all items out
-            while (b.Retrieve() != null)
-                //Do something with item
-
-            //Wait x amount of time
-            //Go To next bed
-            yield return new WaitForSeconds(2.0f);
+            StartCoroutine("RaidBed", b);
         }
 
         Vector3 dogBounds = transform.GetComponent<Mesh>().bounds.size;
@@ -65,6 +73,7 @@ public class Dog : MonoBehaviour
         while (transform.position.y - doorLocation.y >= -dogBounds.y)
             StartCoroutine("MoveTo");
 
+        yield return null;
         
     }
 

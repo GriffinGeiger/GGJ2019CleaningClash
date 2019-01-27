@@ -61,7 +61,8 @@ public class NewBehaviourScript : MonoBehaviour
     {
         
         //for each side of the room
-            //Randomly pick a spot to place the item
+            //Randomly pick a spot to place an item
             //If it would overlap with something, pick a different one
+            //Randomly select one of the items to spawn
     }
 }
