@@ -82,6 +82,8 @@ public class GameManager : MonoBehaviour
     public GameObject momOutroAnimation;
     private bool introTimerStarted = false;
     private bool outroTimerStarted = false;
+    private bool gameTimerStarted = false;
+    public float gameTime = 180f;
 
     private bool itemsSpawned = false;
 void Update()
@@ -149,8 +151,12 @@ void Update()
                 //start timer coroutine
 
                 //when time ends, check score and change state
-
-
+                if (!gameTimerStarted)
+                {
+                    StartCoroutine("IntroTimer");
+                    gameTimerStarted = true;
+                    FindObjectOfType<SunMovement>().sunMoving = true;
+                }
 
 
 
@@ -199,6 +205,14 @@ void Update()
         yield return new WaitForSeconds(8f);
         Debug.Log("timer up");
         gameState = MatchState.Scoring;
+    }
+
+    public IEnumerator GameTimer()
+    {
+        Debug.Log("In Gametimer");
+        yield return new WaitForSeconds(gameTime);
+        Debug.Log("timer up");
+        gameState = MatchState.Mom_Outro;
     }
 
     private bool charactersSpawned;
