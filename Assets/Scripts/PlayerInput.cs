@@ -9,7 +9,7 @@ public class PlayerInput
 {
     public enum playerTag { None = 0,  Player1 = 1 , Player2 =2 , Player3 = 3 , Player4 = 4 };
     public readonly playerTag m_playerTag; 
-    public CharacterMovement m_controller;
+    public PlayerControlledObjects m_controller;
     public bool allowCharacterMovement;
     public float m_triggerPullThreshold=.5f;
 
@@ -50,14 +50,27 @@ public class PlayerInput
 
                 if (m_interactionButton)
                 {
-                    m_controller.Interact();
+                    if (m_controller is CharacterMovement)
+                    {
+                        ((CharacterMovement)m_controller).Interact();
+                    }
+                    else if (m_controller is DraggableObject)
+                    {
+                        ((DraggableObject)m_controller).Place();
+                    }
+
                     m_interactionButton = false;
                 }
 
                 if(m_throwButton)
                 {
-                    m_controller.Throw();
-                    m_interactionButton = false;
+                   if(m_controller is CharacterMovement)
+                    {
+                        Debug.Log("m_controller is CharacterMovement and throwing");
+                        ((CharacterMovement) m_controller).Throw();
+                    }
+
+                    m_throwButton = false;
                 }
             }
             else
