@@ -23,7 +23,8 @@ public class InstantPrefabs : MonoBehaviour
     private static string bedPath_P1 = draggablePath + "/Bed_Draggable_P1.prefab";
     private static string bedPath_P2 = draggablePath + "/Bed_Draggable_P2.prefab";
     public static string deskPath = draggablePath + "/Desk_Prefab.prefab";
-    public static string fanPath = draggablePath + "/Fan_Prefab.prefab";
+    private static string fanPath_P1 = draggablePath + "/Fan_Draggable_P1.prefab";
+    private static string fanPath_P2 = draggablePath + "/Fan_Draggable_P2.prefab";
     public static string dresserPath = draggablePath + "/Dresser_Prefab.prefab";
 
     //Powerups
@@ -136,9 +137,21 @@ public class InstantPrefabs : MonoBehaviour
         return InstantiatePrefab(deskPath, position);
     }
 
-    public static GameObject SpawnFan(Vector3 position)
+    public static GameObject SpawnFan(Vector3 position, PlayerInput.playerTag playerTag) //returns null if not player1 or 2
     {
-        return InstantiatePrefab(fanPath, position);
+        if (playerTag == PlayerInput.playerTag.Player1)
+        {
+            Debug.Log("Spawining Player1 fan");
+            return InstantiatePrefab(fanPath_P1, position);
+        }
+        else
+            if (playerTag == PlayerInput.playerTag.Player2)
+        {
+            Debug.Log("Spawning Player2 fan");
+            return InstantiatePrefab(fanPath_P2, position);
+        }
+        else
+            return null;
     }
 
     public static GameObject SpawnDresser(Vector3 position)
