@@ -211,7 +211,7 @@ void Update()
     {
         Debug.Log("In Gametimer");
         yield return new WaitForSeconds(gameTime);
-        Debug.Log("timer up");
+        Debug.Log("Game over");
         gameState = MatchState.Mom_Outro;
     }
 
