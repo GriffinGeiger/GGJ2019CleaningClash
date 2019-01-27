@@ -4,7 +4,7 @@ using UnityEngine;
 
 //Written by Griffin Geiger
 
-public class CharacterMovement : MonoBehaviour
+public class CharacterMovement : PlayerControlledObjects
 {
     public Rigidbody2D m_rigidbody;
     public Transform m_aimArrowTransform;
@@ -65,7 +65,7 @@ public class CharacterMovement : MonoBehaviour
             PlayerInput player = gm.getPlayerInput((int)m_playerTag);
             if (player.m_controller == null)
             {
-                player.m_controller = this;
+                player.m_controller = (PlayerControlledObjects) this;
             }
             else
             {
@@ -127,7 +127,7 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    public void Aim(Vector2 aimVector) //Move arrow that denotes aiming
+    public override void Aim(Vector2 aimVector) //Move arrow that denotes aiming
     {
         //Rotates around this (the character's) transform
         //About the z axis
@@ -158,7 +158,7 @@ public class CharacterMovement : MonoBehaviour
         }
     }
     
-    public void Move(Vector2 velocity) //should be called in FixedUpdate
+    public override void Move(Vector2 velocity) //should be called in FixedUpdate
     {
 
         //check status effects to see if possible to move

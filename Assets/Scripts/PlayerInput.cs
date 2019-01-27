@@ -32,8 +32,9 @@ public class PlayerInput
         m_leftJoystickMovement.y = Input.GetAxisRaw( m_playerTag + "_Left_Stick_y");
         m_rightJoystickMovement.x = Input.GetAxisRaw(m_playerTag + "_Right_Stick_x");
         m_rightJoystickMovement.y = Input.GetAxisRaw(m_playerTag + "_Right_Stick_y");
-        m_interactionButton     = Input.GetButtonDown( m_playerTag + "_A_Button");
+       // m_interactionButton     = Input.GetButtonDown( m_playerTag + "_A_Button");
         m_throwButton = Input.GetAxisRaw(m_playerTag + "_Right_Trigger") >= m_triggerPullThreshold;
+        m_interactionButton = Input.GetAxisRaw(m_playerTag + "_Left_Trigger") >= m_triggerPullThreshold;
         Debug.Log("stick:" + m_rightJoystickMovement);
 
     }
