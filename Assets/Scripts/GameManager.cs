@@ -95,7 +95,7 @@ void Update()
         {
             case MatchState.Setup:
                 //player1 setup sequence
-                //allowCharacterMovement();
+                allowCharacterMovement();
 
                 if (!m_player1Ready) //keep doing this until first true
                     m_player1Ready = player1Setup.PlayerSetup(player1SpawnLocation);
@@ -153,7 +153,7 @@ void Update()
                 //when time ends, check score and change state
                 if (!gameTimerStarted)
                 {
-                    StartCoroutine("IntroTimer");
+                    StartCoroutine("GameTimer");
                     gameTimerStarted = true;
                     FindObjectOfType<SunMovement>().sunMoving = true;
                 }

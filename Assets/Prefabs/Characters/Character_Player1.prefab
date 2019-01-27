@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1929014933355779714}
   - component: {fileID: 3949984397363709369}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Aim_Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 7831329038481276019}
   - component: {fileID: 2837982761415019280}
   - component: {fileID: 1990660951712930741}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Character_Player1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,10 +174,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f16354a562aad4f93305780d3417a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerTag: 1
   m_rigidbody: {fileID: 2837982761415019280}
   m_aimArrowTransform: {fileID: 1929014933355779714}
   m_aimArrowSprite: {fileID: 3949984397363709369}
-  m_playerTag: 1
   m_speedFactor: 75
   m_arrowDistance: 0.3
   m_armOffset: {x: -0.05, y: 0.2}
