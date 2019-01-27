@@ -22,9 +22,9 @@ public class InstantPrefabs : MonoBehaviour
     //Placable items
     private static string bedPath_P1 = draggablePath + "/Bed_Draggable_P1.prefab";
     private static string bedPath_P2 = draggablePath + "/Bed_Draggable_P2.prefab";
-    public static string deskPath;
-    public static string fanPath;
-    public static string dresserPath;
+    public static string deskPath = draggablePath + "/Desk_Prefab.prefab";
+    public static string fanPath = draggablePath + "/Fan_Prefab.prefab";
+    public static string dresserPath = draggablePath + "/Dresser_Prefab.prefab";
 
     //Powerups
     public static string sugarRushPath = prefabPath + "/SugarRushPrefabs";
@@ -37,7 +37,8 @@ public class InstantPrefabs : MonoBehaviour
     public static string dogPath = prefabPath + "/DogPrefabs";
     public static string darkPath = prefabPath + "/DarkPrefabs";
 
-    // Base Instantiate class
+    //********************  Base Instantiate class **********************
+
     public static GameObject InstantiatePrefab(string path, Vector3 position)
     {
         Debug.Log("Spawning at path: " + path);
@@ -96,6 +97,7 @@ public class InstantPrefabs : MonoBehaviour
     }
 
     //********************  Events **********************
+
     public static GameObject SpawnLava(Vector3 position)
     {
         return InstantiatePrefab(lavaPath, position);
@@ -127,5 +129,20 @@ public class InstantPrefabs : MonoBehaviour
         }
         else
             return null;
+    }
+
+    public static GameObject SpawnDesk(Vector3 position)
+    {
+        return InstantiatePrefab(deskPath, position);
+    }
+
+    public static GameObject SpawnFan(Vector3 position)
+    {
+        return InstantiatePrefab(fanPath, position);
+    }
+
+    public static GameObject SpawnDresser(Vector3 position)
+    {
+        return InstantiatePrefab(dresserPath, position);
     }
 }
