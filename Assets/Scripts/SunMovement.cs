@@ -5,7 +5,7 @@ using UnityEngine;
 public class SunMovement : MonoBehaviour
 {
     static float TimeInSec = 180f;
-    float DegreePerSec = 1000f / TimeInSec;
+    float DegreePerSec = 120f / TimeInSec;
 
 
     // Update is called once per frame
