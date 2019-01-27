@@ -108,8 +108,7 @@ public class CharacterMovement : MonoBehaviour
         if(m_heldItem is Throwable)
         {
             Vector2 directionVector = (m_aimArrowTransform.position - transform.position).normalized;
-            float angle = Mathf.Atan(directionVector.y / directionVector.x);
-            ((Throwable)m_heldItem).Throw(m_baseThrowStrength, angle);
+            ((Throwable)m_heldItem).Throw(m_baseThrowStrength, directionVector);
             m_heldItem = null;
         }
     }

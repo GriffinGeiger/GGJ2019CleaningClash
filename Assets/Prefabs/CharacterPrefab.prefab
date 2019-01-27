@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 498081084}
   - component: {fileID: 498081085}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Aim_Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 431115943897772002}
   - component: {fileID: 431115943897772001}
   - component: {fileID: 1535349923}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CharacterPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_aimArrowSprite: {fileID: 498081085}
   m_playerTag: 1
   m_speedFactor: 75
-  m_arrowDistance: 2.5
+  m_arrowDistance: 0.65
   m_aimDeadZone: 0.1
   m_baseThrowStrength: 1000
   m_topCornerOfOverlap: {x: 1, y: 1}
@@ -213,7 +213,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431115943897772006}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0

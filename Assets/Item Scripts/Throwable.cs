@@ -13,10 +13,9 @@ public class Throwable : Item
     Vector2 stop = new Vector2(0, 0);
 
     //Shoots the item in the given angle with specified strength
-    public void Throw (float strength, float angle)
+    public void Throw (float strength, Vector2 direction)
     {
-        Vector2 throwForce = new Vector2(Mathf.Cos(angle) * strength, Mathf.Sin(angle) * strength);
-        Debug.Log("Throwing with a force of: " + throwForce);
+        Vector2 throwForce = direction * strength;
         GetComponent<Rigidbody2D>().AddForce(throwForce);
         Thrown = true;
     }
