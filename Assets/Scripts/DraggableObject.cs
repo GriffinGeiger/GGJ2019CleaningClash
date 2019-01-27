@@ -15,7 +15,7 @@ public class DraggableObject : PlayerControlledObjects
     private Vector3 offset;
    // private ItemPlacer place = new ItemPlacer();
     public Rigidbody2D m_rigidBody;
-    private float speedFactor;
+    private float speedFactor = 10f;
 
     public override void Aim(Vector2 aimVector)
     {

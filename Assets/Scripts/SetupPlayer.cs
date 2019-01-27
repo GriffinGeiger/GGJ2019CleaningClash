@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetupPlayer : MonoBehaviour
+public class SetupPlayer
 {
     enum SetupState { Bed, Desk, Fan, Dresser, Done };
     SetupState setupState;
