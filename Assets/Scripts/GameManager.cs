@@ -88,14 +88,14 @@ void Update()
         {
             case MatchState.Setup:
                 //player1 setup sequence
-                allowCharacterMovement();
+                //allowCharacterMovement();
 
                 if (!m_player1Ready) //keep doing this until first true
                     m_player1Ready = player1Setup.PlayerSetup(player1SpawnLocation);
                 //player2 setup sequence
                 if(!m_player2Ready) //keep doing this until first true
                     m_player2Ready = player2Setup.PlayerSetup(player2SpawnLocation);
-
+                
                 if (m_player1Ready)
                 {
                     Debug.Log("Player1 Ready");
@@ -108,6 +108,8 @@ void Update()
                 {
                     gameState = MatchState.Mom_Intro;
                 }
+                
+
                 break;
             case MatchState.Mom_Intro:
 

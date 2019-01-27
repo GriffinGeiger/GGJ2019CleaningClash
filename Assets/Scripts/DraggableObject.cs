@@ -25,7 +25,6 @@ public class DraggableObject : PlayerControlledObjects
 
     public override void Move(Vector2 velocity) //should be called in FixedUpdate
     {
-        Debug.Log("Moving");
         //if it is possible to move then move according to the input
         m_rigidBody.AddForce(velocity * speedFactor);
     }

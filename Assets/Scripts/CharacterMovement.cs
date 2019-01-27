@@ -83,6 +83,7 @@ public class CharacterMovement : PlayerControlledObjects
         }
         else //holding item, unload into bed or do nothing
         {
+            Debug.Log("In bed else");
          /*   Bed bed = foundInteractable.GetComponent<Bed>();
             if (bed != null)//Note: if holding an item and there's another item near the bed, you will not be able to stash
             {

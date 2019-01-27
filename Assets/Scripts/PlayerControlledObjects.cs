@@ -13,6 +13,7 @@ public abstract class PlayerControlledObjects : MonoBehaviour
 
     public void ConnectToPlayerInput(GameManager gm)
     {
+        Debug.Log("connecting");
         if (m_playerTag == PlayerInput.playerTag.None)
         {
             Debug.LogWarning("PlayerTag set to no player. Add playerTag in prefab. Ex: Player1, Player2");

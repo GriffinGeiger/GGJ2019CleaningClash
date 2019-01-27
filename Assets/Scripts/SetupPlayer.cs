@@ -21,6 +21,7 @@ public class SetupPlayer
     //Called every update during setup
     public bool PlayerSetup(Vector3 spawnLocationForItems)
     {
+       
         if (readyForNextFurniture) //spawn next furniture and set the nextstate
         {
             switch (setupState)
