@@ -75,6 +75,8 @@ public class GameManager : MonoBehaviour
     public GameObject player1Text;
     public GameObject player2Text;
 
+    public GameObject momIntroAnimation;
+    private bool introTimerStarted = false;
 void Update()
     {
         foreach (PlayerInput pi in playerInputs)
@@ -109,12 +111,20 @@ void Update()
                 Debug.Log("In Mom_Intro");
                 player1Text.SetActive(false);
                 player2Text.SetActive(false);
-
+                momIntroAnimation.SetActive(true);
                 if (!m_playersSpawned) //check if players are spawned and if not, spawn them
                     m_playersSpawned = SpawnCharacters();
 
+                if (!introTimerStarted)
+                {
+                    Debug.Log("Starting timer");
+                    StartCoroutine("IntroTimer");
+                    introTimerStarted = true;
+                }
                     break;
             case MatchState.Gameplay:
+                momIntroAnimation.SetActive(false);
+                Debug.Log("In Gameplay state");
                 break;
             case MatchState.Mom_Outro:
                 break;
@@ -134,6 +144,14 @@ void Update()
             default:
                 break;
         }
+    }
+
+    public IEnumerator IntroTimer()
+    {
+        Debug.Log("In introtimer");
+        yield return new WaitForSeconds(8f);
+        Debug.Log("timer up");
+        gameState = MatchState.Gameplay;
     }
 
     private bool charactersSpawned;

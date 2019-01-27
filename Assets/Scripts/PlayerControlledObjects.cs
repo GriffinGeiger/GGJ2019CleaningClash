@@ -20,11 +20,9 @@ public abstract class PlayerControlledObjects : MonoBehaviour
         else
         {
             PlayerInput player = null;
-
-            Debug.Log("Player tag: " +(int) m_playerTag);
             try
             {
-                Debug.Log("Game Manager: " + gm);
+  
                 player = gm.getPlayerInput((int)m_playerTag);
             }catch (System.NullReferenceException nre ) { Debug.LogError(nre.Message); }
             
