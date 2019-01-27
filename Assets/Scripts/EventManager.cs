@@ -126,6 +126,7 @@ public class EventManager : MonoBehaviour
     static private Vector2 maxPoint= new Vector2(8f,1f);
     static private Vector2 minPoint = new Vector2(-8f, -4.3f);
     static private Vector2 midPoint = new Vector2(0f, -1.7f);
+    static private Vector2 dimensions = new Vector2(Mathf.Abs(minPoint.x) + maxPoint.x, Mathf.Abs(minPoint.y) + maxPoint.y);
     //Randomly spawns items on each team's side
     static public void SpawnItems(int amount)
     {
@@ -138,7 +139,7 @@ public class EventManager : MonoBehaviour
                
                 int num = Choose(ItemProbs);
 
-                Vector2 loc = new Vector2(Random.value * max, Random.value * 5.3f - 4.3f);
+                Vector2 loc = new Vector2(Random.value * dimensions.x/2 + min, Random.value * dimensions.y + minPoint.y);
                 InstantPrefabs.SpawnRandomCommonThrowable(loc) ;
                 /*while (true)
                 {

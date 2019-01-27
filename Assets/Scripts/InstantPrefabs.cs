@@ -53,8 +53,7 @@ public class InstantPrefabs : MonoBehaviour
     {
         try
         {
-            System.Random rng = new System.Random();
-            int randomNumber = rng.Next(0, 10);
+            int randomNumber = UnityEngine.Random.Range(0, 10);
             return InstantiatePrefab(commonThrowablePath + "/Common_Throwable ("
                 + randomNumber + ") Variant.prefab", position);
         }
