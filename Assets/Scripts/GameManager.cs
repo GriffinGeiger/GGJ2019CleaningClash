@@ -92,9 +92,13 @@ void Update()
                     m_player2Ready = player2Setup.PlayerSetup(player2SpawnLocation);
 
                 if (m_player1Ready)
+                {
+                    Debug.Log("Player1 Ready");
                     player1Text.SetActive(true);
-                if (m_player1Ready)
+                }
+                if (m_player2Ready)
                     player2Text.SetActive(true);
+
                 if(m_player1Ready && m_player2Ready)
                 {
                     gameState = MatchState.Mom_Intro;
@@ -103,6 +107,9 @@ void Update()
             case MatchState.Mom_Intro:
 
                 Debug.Log("In Mom_Intro");
+                player1Text.SetActive(false);
+                player2Text.SetActive(false);
+
                 if (!m_playersSpawned) //check if players are spawned and if not, spawn them
                     m_playersSpawned = SpawnCharacters();
 
@@ -129,19 +136,23 @@ void Update()
         }
     }
 
-   
-
+    private bool charactersSpawned;
+    private CharacterMovement player1;
+    private CharacterMovement player2;
     private bool SpawnCharacters() //They will be spawned but not allowed to move or connected to PlayerInputs. returns true if complete
     {
+        if (!charactersSpawned)
+        {
+            player1 = InstantPrefabs.InstantiatePrefab(InstantPrefabs.player1Path, player1SpawnLocation).GetComponent<CharacterMovement>();
+            player2 = InstantPrefabs.InstantiatePrefab(InstantPrefabs.player2Path, player2SpawnLocation).GetComponent<CharacterMovement>();
+            charactersSpawned = true;
+        }
+
         try
         {
-            InstantPrefabs.InstantiatePrefab(InstantPrefabs.player1Path, player1SpawnLocation).GetComponent<CharacterMovement>().ConnectToPlayerInput();
-            InstantPrefabs.InstantiatePrefab(InstantPrefabs.player2Path, player2SpawnLocation).GetComponent<CharacterMovement>().ConnectToPlayerInput();
-        } catch(Exception e)
-        {
-            Debug.LogError(e.Message);
-            return false;
-        }
+            player1.ConnectToPlayerInput(this);
+            player2.ConnectToPlayerInput(this);
+        } catch(Exception) { return false; }
         return true;
     }
 

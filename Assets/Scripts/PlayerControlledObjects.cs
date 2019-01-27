@@ -8,14 +8,10 @@ public abstract class PlayerControlledObjects : MonoBehaviour
     public abstract void Aim(Vector2 AimVector);
 
     public PlayerInput.playerTag m_playerTag;
-    private GameManager gm;
+    [SerializeField]
 
-    private void Awake()
-    {
-        gm = FindObjectOfType<GameManager>();
-    }
 
-    public void ConnectToPlayerInput()
+    public void ConnectToPlayerInput(GameManager gm)
     {
         if (m_playerTag == PlayerInput.playerTag.None)
         {
@@ -23,12 +19,16 @@ public abstract class PlayerControlledObjects : MonoBehaviour
         }
         else
         {
-            PlayerInput player;
+            PlayerInput player = null;
+
+            Debug.Log("Player tag: " +(int) m_playerTag);
             try
             {
+                Debug.Log("Game Manager: " + gm);
                 player = gm.getPlayerInput((int)m_playerTag);
-
-                if (player.m_controller == null)
+            }catch (System.NullReferenceException nre ) { Debug.LogError(nre.Message); }
+            
+            if (player.m_controller == null)
                 {
                     player.m_controller = (PlayerControlledObjects)this;
                 }
@@ -37,7 +37,6 @@ public abstract class PlayerControlledObjects : MonoBehaviour
                     Debug.LogWarning("Replacing PlayerController that is already connected to PlayerInput");
                     player.m_controller = (PlayerControlledObjects)this;
                 }
-            } catch(System.NullReferenceException nre) { Debug.Log(nre.Message); }
         }
     }
 }

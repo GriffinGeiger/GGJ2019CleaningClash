@@ -46,7 +46,7 @@ public class SetupPlayer
             }
             currentDraggable.m_playerTag = playerTag;
             if(currentDraggable!= null)
-                currentDraggable.ConnectToPlayerInput();
+                currentDraggable.ConnectToPlayerInput( GameObject.FindObjectOfType<GameManager>());
             readyForNextFurniture = false;
         }
 
@@ -54,10 +54,8 @@ public class SetupPlayer
         {
             setupState = nextState;
             debounceTimer += Time.deltaTime;
-            Debug.Log(Time.deltaTime);
             if(debounceTime < debounceTimer)
             {
-                Debug.Log("Timerdone: " + debounceTime);
                 debounceTimer = 0f;
                 readyForNextFurniture = true;
             }
