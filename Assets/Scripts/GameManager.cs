@@ -139,7 +139,11 @@ void Update()
                     itemsSpawned = true;
                 }
 
+                //start sun
 
+                //start timer coroutine
+
+                //when time ends, check score and change state
 
 
 

@@ -42,7 +42,7 @@ public class InstantPrefabs : MonoBehaviour
 
     public static GameObject InstantiatePrefab(string path, Vector3 position)
     {
-        Debug.Log("Spawning at path: " + path);
+       // Debug.Log("Spawning at path: " + path);
         return GameObject.Instantiate(
             AssetDatabase.LoadAssetAtPath<GameObject>(path), position, Quaternion.identity);
     }
