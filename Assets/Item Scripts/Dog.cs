@@ -28,7 +28,7 @@ public class Dog : MonoBehaviour
             Item i = b.Retrieve();
             if (!i)
                 break;
-            Vector3 tossingVector = new Vector3(Random.Range(50, 100), Random.Range(50, 100), 0);
+            Vector3 tossingVector = new Vector3((Mathf.Round(Random.Range(0,1))*2 - 1) * Random.Range(50, 100), (Mathf.Round(Random.Range(0, 1))*2 - 1) * Random.Range(50, 100), 0);
             b.transform.GetComponent<Rigidbody2D>().AddForce(tossingVector);
         }
         yield return new WaitForSeconds(2.0f);
@@ -37,7 +37,7 @@ public class Dog : MonoBehaviour
     IEnumerator Search()
     {
        //Move dog out in to the world first
-        for (int i =0; i < 5; i++)
+       for (int i =0; i < 5; i++)
             StartCoroutine("MoveTo");
 
         foreach (Bed b in FindObjectsOfType(typeof(Bed)) as Bed[])

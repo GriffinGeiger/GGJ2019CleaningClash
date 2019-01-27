@@ -59,6 +59,7 @@ public class NewBehaviourScript : MonoBehaviour
     //Method for choosing a random item to be created
     Item chooseItem()
     {
+        //              common, lego, socks
         float[] probs = { 80f, 10f, 10f };
         float choice = Choose(probs);
         switch ((int)choice)
@@ -66,12 +67,14 @@ public class NewBehaviourScript : MonoBehaviour
             case 0:
                 return new Item();
             case 1:
-                return new Socks();
-            case 2:
                 return new Legos();
+            case 2:
+                return new Socks();
             default:
                 return new Item();
         }
+
+
     }
 
     //Method for choosing a random powerup to be created
@@ -151,13 +154,30 @@ public class NewBehaviourScript : MonoBehaviour
             {
                 int min = j == 0 ? 0 : Screen.width / 2;
                 int max = j == 0 ? Screen.width / 2 : Screen.width;
-                Item current = chooseItem();
+               
+                //              common, lego, socks
+                float[] probs = { 80f, 10f, 10f };
+                
+                int num = (int)Choose(probs);
                 while (true)
                 {
                     Vector2 loc = new Vector2(Random.Range(min, max), Random.Range(0, Screen.height));
                     
                     if (Physics2D.OverlapCircle(loc, .5f) == null){
-                        current.transform.position = loc;
+                        if (num == 0)
+                        {
+                            InstantPrefabs.SpawnRandomCommonThrowable(loc);
+                        }
+                        /**
+                         * else if (num == 1) {
+                         *     InstantPrefabs.SpawnLegos(loc);
+                         * }
+                         * 
+                         * else{
+                         *      InstantPrefabs.SpawnSocks(loc);
+                         * }
+                         * 
+                         **/
                         break;
                     }
                 }

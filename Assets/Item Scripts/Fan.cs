@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fan : MonoBehaviour
+public class Fan : DraggableObject
 {
     float angle;
     float range = Mathf.PI / 2;
+    float flipVal = 0;
     bool powered = false;
     float force;
     float powerLevel = 0;
@@ -24,13 +25,21 @@ public class Fan : MonoBehaviour
         
     }
 
+    void Start()
+    {
+        if (transform.position.x > Screen.width)
+        {
+            flipVal = Mathf.PI;
+        }
+    }
+
     void FixedUpdate()
     {
         //If the fan is powered up
         if (powered)
         {
             //Adjust oscillation direction
-            if (Mathf.Abs(angle) >= range)   
+            if (Mathf.Abs(angle) - flipVal >= range)   
                 updater *= -1;
 
             RaycastHit hit = new RaycastHit();
