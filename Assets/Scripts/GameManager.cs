@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
     private bool introTimerStarted = false;
     private bool outroTimerStarted = false;
     private bool gameTimerStarted = false;
-    public float gameTime = 180f;
+    public float gameTime = 60f;
 
     private bool itemsSpawned = false;
 void Update()

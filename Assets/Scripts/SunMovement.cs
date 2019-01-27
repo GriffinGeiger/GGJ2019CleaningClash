@@ -6,7 +6,7 @@ public class SunMovement : MonoBehaviour
 {
 
     const float totalDegrees = 120f;
-    static float TimeInSec = 180f;
+    static float TimeInSec = 60f;
     float DegreePerSec = totalDegrees/ TimeInSec;
     public bool sunMoving = false;
     public GameObject light;
