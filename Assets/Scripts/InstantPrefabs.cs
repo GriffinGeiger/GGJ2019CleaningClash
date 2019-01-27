@@ -23,8 +23,8 @@ public class InstantPrefabs : MonoBehaviour
     private static string bedPath_P1 = draggablePath + "/Bed_Draggable_P1.prefab";
     private static string bedPath_P2 = draggablePath + "/Bed_Draggable_P2.prefab";
     public static string deskPath = draggablePath + "/Desk_Prefab.prefab";
-    private static string fanPath_P1 = draggablePath + "/Fan_Draggable_P1.prefab";
-    private static string fanPath_P2 = draggablePath + "/Fan_Draggable_P2.prefab";
+    private static string fanPath_P1 = draggablePath + "/Fan_Prefab_P1.prefab";
+    private static string fanPath_P2 = draggablePath + "/Fan_Prefab_P2.prefab";
     public static string dresserPath = draggablePath + "/Dresser_Prefab.prefab";
 
     //Powerups
