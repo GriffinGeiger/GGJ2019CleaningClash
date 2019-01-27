@@ -79,7 +79,10 @@ public class GameManager : MonoBehaviour
     public GameObject winnerText;
 
     public GameObject momIntroAnimation;
+    public GameObject momOutroAnimation;
     private bool introTimerStarted = false;
+    private bool outroTimerStarted = false;
+
     private bool itemsSpawned = false;
 void Update()
     {
@@ -126,7 +129,6 @@ void Update()
 
                 if (!introTimerStarted)
                 {
-                    Debug.Log("Starting timer");
                     StartCoroutine("IntroTimer");
                     introTimerStarted = true;
                 }
@@ -155,8 +157,15 @@ void Update()
                 //////////////////////////////////////////////////
                 break;
             case MatchState.Mom_Outro:
+                momOutroAnimation.SetActive(true);
+                if (!outroTimerStarted)
+                {
+                    StartCoroutine("OutroTimer");
+                    outroTimerStarted = true;
+                }
                 break;
             case MatchState.Scoring:
+                momOutroAnimation.SetActive(false);
                 winnerText.SetActive(true);
 
                 int winner = TallyScores();
@@ -182,6 +191,14 @@ void Update()
         yield return new WaitForSeconds(8f);
         Debug.Log("timer up");
         gameState = MatchState.Gameplay;
+    }
+
+    public IEnumerator OutroTimer()
+    {
+        Debug.Log("In outrotimer");
+        yield return new WaitForSeconds(8f);
+        Debug.Log("timer up");
+        gameState = MatchState.Scoring;
     }
 
     private bool charactersSpawned;
