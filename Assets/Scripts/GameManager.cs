@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     public const int NumberOfPlayers = 2;
     public Vector3 player1SpawnLocation;
     public Vector3 player2SpawnLocation;
-    
+    public int numberOfItemsToSpawn = 10;
+
     [SerializeField]
     public PlayerInput[] playerInputs = new PlayerInput[NumberOfPlayers];
 
@@ -77,6 +78,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject momIntroAnimation;
     private bool introTimerStarted = false;
+    private bool itemsSpawned = false;
 void Update()
     {
         foreach (PlayerInput pi in playerInputs)
@@ -123,8 +125,23 @@ void Update()
                 }
                     break;
             case MatchState.Gameplay:
+                ////////////////////Gameplay////////////////////
                 momIntroAnimation.SetActive(false);
                 Debug.Log("In Gameplay state");
+                if(!itemsSpawned)
+                {
+                    //spawn items
+                    EventManager.SpawnItems(numberOfItemsToSpawn);
+                    itemsSpawned = true;
+                }
+
+
+
+
+
+
+
+                //////////////////////////////////////////////////
                 break;
             case MatchState.Mom_Outro:
                 break;

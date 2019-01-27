@@ -13,7 +13,7 @@ public class EventManager : MonoBehaviour
     float[] EventProbs = { 50f,  30f,  10f };
 
     //                  common, legos, socks
-    float[] ItemProbs = { 80f,   10f,   10f };
+    static float[] ItemProbs = { 80f,   10f,   10f };
 
     //                      sugar, gauntlet, hands, battery, mask, phone
     float[] PowerupProbs = { 10f,     10f,    10f,    2f,     10f,   1f };
@@ -21,7 +21,7 @@ public class EventManager : MonoBehaviour
     
 
     //An algorithm for using RNG to select an option from a weighted number set
-    int Choose (float[] probs)
+    static int Choose (float[] probs)
     {
         float total = 0;
         foreach (float elem in probs)
@@ -123,22 +123,28 @@ public class EventManager : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
     }
 
+    static private Vector2 maxPoint= new Vector2(8f,1f);
+    static private Vector2 minPoint = new Vector2(-8f, -4.3f);
+    static private Vector2 midPoint = new Vector2(0f, -1.7f);
     //Randomly spawns items on each team's side
-    void SpawnItems(int amount)
+    static public void SpawnItems(int amount)
     {
         for (int i = 0; i < amount; i++)
         {
             for (int j = 0; j < 2; j++)
             {
-                int min = j == 0 ? 0 : Screen.width / 2;
-                int max = j == 0 ? Screen.width / 2 : Screen.width;
+                float min = j == 0 ? minPoint.x : midPoint.x;
+                float max = j == 0 ? midPoint.x : maxPoint.x;
                
                 int num = Choose(ItemProbs);
-                while (true)
+
+                Vector2 loc = new Vector2(Random.value * max, Random.value * 5.3f - 4.3f);
+                InstantPrefabs.SpawnRandomCommonThrowable(loc) ;
+                /*while (true)
                 {
-                    Vector2 loc = new Vector2(Random.Range(min, max), Random.Range(0, Screen.height));
                     
-                    if (Physics2D.OverlapCircle(loc, .5f) == null){
+                    
+                    if (Physics2D.OverlapCircle(loc, .01f) == null){
                         //if (num == 0)
                             InstantPrefabs.SpawnRandomCommonThrowable(loc);  
                         //else if (num == 1) 
@@ -147,7 +153,7 @@ public class EventManager : MonoBehaviour
                              //InstantPrefabs.SpawnSocks(loc);
                         break;
                     }
-                }
+                }*/
 
             }
         }
