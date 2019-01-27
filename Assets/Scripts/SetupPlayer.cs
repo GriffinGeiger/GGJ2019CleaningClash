@@ -28,15 +28,15 @@ public class SetupPlayer
                     nextState = SetupState.Desk;
                     break;
                 case SetupState.Desk:
-                    currentDraggable = InstantPrefabs.InstantiatePrefab(InstantPrefabs.deskPath, spawnLocationForItems).GetComponent<DraggableObject>();
+                    currentDraggable = InstantPrefabs.SpawnDesk(spawnLocationForItems).GetComponent<DraggableObject>();
                     nextState = SetupState.Fan;
                     break;
                 case SetupState.Fan:
-                    currentDraggable = InstantPrefabs.InstantiatePrefab(InstantPrefabs.fanPath, spawnLocationForItems).GetComponent<DraggableObject>();
+                    currentDraggable = InstantPrefabs.SpawnFan(spawnLocationForItems).GetComponent<DraggableObject>();
                     nextState = SetupState.Dresser;
                     break;
                 case SetupState.Dresser:
-                    currentDraggable = InstantPrefabs.InstantiatePrefab(InstantPrefabs.dresserPath, spawnLocationForItems).GetComponent<DraggableObject>();
+                    currentDraggable = InstantPrefabs.SpawnDresser(spawnLocationForItems).GetComponent<DraggableObject>();
                     nextState = SetupState.Done;
                     break;
                 case SetupState.Done:
