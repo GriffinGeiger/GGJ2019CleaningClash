@@ -1576,6 +1576,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f52c2cd9634a74c4e83e6fe1ddc57990, type: 3}
+--- !u!1 &1259389305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1556451528922629388, guid: f52c2cd9634a74c4e83e6fe1ddc57990,
+    type: 3}
+  m_PrefabInstance: {fileID: 1259389304}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1404868723
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,7 +2060,7 @@ MonoBehaviour:
   introText: {fileID: 2039731421}
   winnerText: {fileID: 492256554}
   momIntroAnimation: {fileID: 1099885506}
-  momOutroAnimation: {fileID: 0}
+  momOutroAnimation: {fileID: 1259389305}
 --- !u!4 &1603288656
 Transform:
   m_ObjectHideFlags: 0
