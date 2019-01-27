@@ -83,7 +83,7 @@ public class CharacterMovement : PlayerControlledObjects
         }
         else //holding item, unload into bed or do nothing
         {
-            Bed bed = foundInteractable.GetComponent<Bed>();
+         /*   Bed bed = foundInteractable.GetComponent<Bed>();
             if (bed != null)//Note: if holding an item and there's another item near the bed, you will not be able to stash
             {
                 if (bed.Store(m_heldItem)) //returns true if successfully stored
@@ -92,6 +92,7 @@ public class CharacterMovement : PlayerControlledObjects
                 }
             }
                     //Throw button takes care of throwing so no action here
+                    */
         }
     }
 

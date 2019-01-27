@@ -88,8 +88,9 @@ void Update()
         {
             case MatchState.Setup:
                 //player1 setup sequence
-                
-                if(!m_player1Ready) //keep doing this until first true
+                allowCharacterMovement();
+
+                if (!m_player1Ready) //keep doing this until first true
                     m_player1Ready = player1Setup.PlayerSetup(player1SpawnLocation);
                 //player2 setup sequence
                 if(!m_player2Ready) //keep doing this until first true
@@ -110,6 +111,7 @@ void Update()
                 break;
             case MatchState.Mom_Intro:
 
+
                 Debug.Log("In Mom_Intro");
                 player1Text.SetActive(false);
                 player2Text.SetActive(false);
@@ -127,10 +129,10 @@ void Update()
             case MatchState.Gameplay:
                 ////////////////////Gameplay////////////////////
                 momIntroAnimation.SetActive(false);
-                Debug.Log("In Gameplay state");
                 if(!itemsSpawned)
                 {
                     //spawn items
+                    Debug.Log("Spawning items");
                     EventManager.SpawnItems(numberOfItemsToSpawn);
                     itemsSpawned = true;
                 }
