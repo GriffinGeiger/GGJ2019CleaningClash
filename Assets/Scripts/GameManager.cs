@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public const int NumberOfPlayers = 2;
     public Vector3 player1SpawnLocation;
     public Vector3 player2SpawnLocation;
-
+    
     [SerializeField]
     public PlayerInput[] playerInputs = new PlayerInput[NumberOfPlayers];
 
@@ -67,6 +67,9 @@ public class GameManager : MonoBehaviour
     private bool m_player1Ready;
     private bool m_player2Ready;
 
+    SetupPlayer player1Setup = new SetupPlayer();
+    SetupPlayer player2Setup = new SetupPlayer();
+
 void Update()
     {
         foreach (PlayerInput pi in playerInputs)
@@ -76,13 +79,23 @@ void Update()
         {
             case MatchState.Setup:
                 //player1 setup sequence
-                m_player1Ready = PlayerSetup(PlayerInput.playerTag.Player1);
+                
+                if(!m_player1Ready) //keep doing this until first true
+                    m_player1Ready = player1Setup.PlayerSetup(player1SpawnLocation);
                 //player2 setup sequence
-                m_player2Ready = PlayerSetup(PlayerInput.playerTag.Player2);
+                if(!m_player2Ready) //keep doing this until first true
+                    m_player2Ready = player2Setup.PlayerSetup(player2SpawnLocation);
+
+                if(m_player1Ready && m_player2Ready)
+                {
+                    gameState = MatchState.Mom_Intro;
+                }
                 break;
             case MatchState.Mom_Intro:
+
                 if (!m_playersSpawned) //check if players are spawned and if not, spawn them
                     m_playersSpawned = SpawnCharacters();
+
                     break;
             case MatchState.Gameplay:
                 break;
@@ -106,27 +119,7 @@ void Update()
         }
     }
 
-    enum SetupState { Bed, Desk, Fan, Dresser };
-    SetupState setupState;
-
-    //Called every update during setup
-    private bool PlayerSetup(PlayerInput.playerTag playerTag)
-    {
-        switch (setupState)
-        {
-            case SetupState.Bed:
-
-                break;
-            case SetupState.Desk:
-                break;
-            case SetupState.Fan:
-                break;
-            case SetupState.Dresser:
-                break;
-            default:
-                break;
-        }
-    }
+   
 
     private bool SpawnCharacters() //They will be spawned but not allowed to move or connected to PlayerInputs. returns true if complete
     {

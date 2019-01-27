@@ -9,6 +9,7 @@ public class DraggableObject : PlayerControlledObjects
     public bool editable = true;
     public Vector3 placedPosition;
     public Quaternion placedRotation;
+    public bool placed = false;
 
     private Vector3 screenPoint;
     private Vector3 offset;
