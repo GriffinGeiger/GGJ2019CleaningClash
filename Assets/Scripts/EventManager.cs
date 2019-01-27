@@ -139,16 +139,12 @@ public class EventManager : MonoBehaviour
                     Vector2 loc = new Vector2(Random.Range(min, max), Random.Range(0, Screen.height));
                     
                     if (Physics2D.OverlapCircle(loc, .5f) == null){
-                        if (num == 0)
-                        {
-                            InstantPrefabs.SpawnRandomCommonThrowable(loc);
-                        }
-                        else if (num == 1) {
-                             InstantPrefabs.SpawnLegos(loc);
-                        }
-                        else{
-                             InstantPrefabs.SpawnSocks(loc);
-                        }
+                        //if (num == 0)
+                            InstantPrefabs.SpawnRandomCommonThrowable(loc);  
+                        //else if (num == 1) 
+                             //InstantPrefabs.SpawnLegos(loc);                       
+                        //else
+                             //InstantPrefabs.SpawnSocks(loc);
                         break;
                     }
                 }
