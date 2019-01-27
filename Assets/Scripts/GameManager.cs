@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //written by Griffin Geiger 
 
@@ -71,6 +72,9 @@ public class GameManager : MonoBehaviour
     SetupPlayer player1Setup = new SetupPlayer(PlayerInput.playerTag.Player1);
     SetupPlayer player2Setup = new SetupPlayer(PlayerInput.playerTag.Player2);
 
+    public GameObject player1Text;
+    public GameObject player2Text;
+
 void Update()
     {
         foreach (PlayerInput pi in playerInputs)
@@ -87,6 +91,10 @@ void Update()
                 if(!m_player2Ready) //keep doing this until first true
                     m_player2Ready = player2Setup.PlayerSetup(player2SpawnLocation);
 
+                if (m_player1Ready)
+                    player1Text.SetActive(true);
+                if (m_player1Ready)
+                    player2Text.SetActive(true);
                 if(m_player1Ready && m_player2Ready)
                 {
                     gameState = MatchState.Mom_Intro;
@@ -94,6 +102,7 @@ void Update()
                 break;
             case MatchState.Mom_Intro:
 
+                Debug.Log("In Mom_Intro");
                 if (!m_playersSpawned) //check if players are spawned and if not, spawn them
                     m_playersSpawned = SpawnCharacters();
 

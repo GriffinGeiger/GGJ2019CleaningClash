@@ -34,7 +34,7 @@ public class SetupPlayer
                     nextState = SetupState.Fan;
                     break;
                 case SetupState.Fan:
-                    currentDraggable = InstantPrefabs.SpawnFan(spawnLocationForItems).GetComponent<DraggableObject>();
+                    currentDraggable = InstantPrefabs.SpawnFan(spawnLocationForItems, playerTag).GetComponent<DraggableObject>();
                     nextState = SetupState.Dresser;
                     break;
                 case SetupState.Dresser:

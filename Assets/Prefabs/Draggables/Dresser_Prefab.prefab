@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4003503670065921670}
   - component: {fileID: 761722794935882182}
   m_Layer: 0
-  m_Name: Dresser
+  m_Name: Dresser_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,8 +99,8 @@ MonoBehaviour:
   placedPosition: {x: 0, y: 0, z: 0}
   placedRotation: {x: 0, y: 0, z: 0, w: 0}
   placed: 0
-  m_rigidBody: {fileID: 0}
-  speedFactor: 10
+  m_rigidBody: {fileID: 4003503670065921670}
+  speedFactor: 50
 --- !u!50 &4003503670065921670
 Rigidbody2D:
   serializedVersion: 4
@@ -114,7 +114,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 50
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
