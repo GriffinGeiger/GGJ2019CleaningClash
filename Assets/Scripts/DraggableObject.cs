@@ -37,4 +37,13 @@ public class DraggableObject : PlayerControlledObjects
         placed = true;
     }
 
+    private void Update()
+    {
+        if (placed)
+        {
+            transform.position = placedPosition;
+            transform.rotation = placedRotation;
+        }
+    }
+
 }

@@ -10,6 +10,8 @@ public class SetupPlayer
     bool readyForNextFurniture = true;
     DraggableObject currentDraggable;
     private PlayerInput.playerTag playerTag;
+    private float debounceTimer = 0f;
+    private float debounceTime = .5f;
 
     public SetupPlayer(PlayerInput.playerTag playerTag)
     {
@@ -42,6 +44,7 @@ public class SetupPlayer
                 case SetupState.Done:
                     return true;
             }
+            currentDraggable.m_playerTag = playerTag;
             if(currentDraggable!= null)
                 currentDraggable.ConnectToPlayerInput();
             readyForNextFurniture = false;
@@ -50,9 +53,18 @@ public class SetupPlayer
         if (currentDraggable.placed) //object has been placed, go to next one
         {
             setupState = nextState;
-            readyForNextFurniture = true;
+            debounceTimer += Time.deltaTime;
+            Debug.Log(Time.deltaTime);
+            if(debounceTime < debounceTimer)
+            {
+                Debug.Log("Timerdone: " + debounceTime);
+                debounceTimer = 0f;
+                readyForNextFurniture = true;
+            }
         }
 
         return false;
     }
+
+
 }

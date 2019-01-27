@@ -35,6 +35,7 @@ public abstract class PlayerControlledObjects : MonoBehaviour
                 else
                 {
                     Debug.LogWarning("Replacing PlayerController that is already connected to PlayerInput");
+                    player.m_controller = (PlayerControlledObjects)this;
                 }
             } catch(System.NullReferenceException nre) { Debug.Log(nre.Message); }
         }
