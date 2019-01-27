@@ -142,12 +142,27 @@ public class NewBehaviourScript : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
     }
 
-    void SpawnItems()
+    //Randomly spawns items on each team's side
+    void SpawnItems(int amount)
     {
-        
-        //for each side of the room
-            //Randomly pick a spot to place an item
-            //If it would overlap with something, pick a different one
-            //Randomly select one of the items to spawn
+        for (int i = 0; i < amount; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                int min = j == 0 ? 0 : Screen.width / 2;
+                int max = j == 0 ? Screen.width / 2 : Screen.width;
+                Item current = chooseItem();
+                while (true)
+                {
+                    Vector2 loc = new Vector2(Random.Range(min, max), Random.Range(0, Screen.height));
+                    
+                    if (Physics2D.OverlapCircle(loc, .5f) == null){
+                        current.transform.position = loc;
+                        break;
+                    }
+                }
+
+            }
+        }
     }
 }
