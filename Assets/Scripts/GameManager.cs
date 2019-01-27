@@ -75,6 +75,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject player1Text;
     public GameObject player2Text;
+    public GameObject introText;
+    public GameObject winnerText;
 
     public GameObject momIntroAnimation;
     private bool introTimerStarted = false;
@@ -117,6 +119,7 @@ void Update()
                 Debug.Log("In Mom_Intro");
                 player1Text.SetActive(false);
                 player2Text.SetActive(false);
+                introText.SetActive(false);
                 momIntroAnimation.SetActive(true);
                 if (!m_playersSpawned) //check if players are spawned and if not, spawn them
                     m_playersSpawned = SpawnCharacters();
@@ -154,6 +157,8 @@ void Update()
             case MatchState.Mom_Outro:
                 break;
             case MatchState.Scoring:
+                winnerText.SetActive(true);
+
                 int winner = TallyScores();
                 if (winner == 1)
                     Debug.Log("Player 1 wins!"); //do winner things here
