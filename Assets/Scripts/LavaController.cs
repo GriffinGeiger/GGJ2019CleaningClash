@@ -8,12 +8,13 @@ public class LavaController : MonoBehaviour
     public GameObject bed;
     public GameObject desk;
     private double timeLeft;
+    bool burned = false;
 
     // Start is called before the first frame update
     void Start()
     {
         timeLeft = 10;
-        players = new CharacterMovement[2];
+        players =  FindObjectsOfType<CharacterMovement>();
     }
 
     // Update is called once per frame
@@ -26,11 +27,15 @@ public class LavaController : MonoBehaviour
                 if(!players[i].onFurniture)
                 {
                     players[i].Stun(2.0f);
-                    Destroy(this.gameObject);
+                    burned = true;
                 }
                 
             }
             
+        }
+        if (burned)
+        {
+            Destroy(this.gameObject);
         }
         timeLeft -= Time.deltaTime;
         if(timeLeft <= 0)
