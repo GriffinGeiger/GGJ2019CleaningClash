@@ -2061,7 +2061,7 @@ MonoBehaviour:
   winnerText: {fileID: 492256554}
   momIntroAnimation: {fileID: 1099885506}
   momOutroAnimation: {fileID: 1259389305}
-  gameTime: 180
+  gameTime: 60
 --- !u!4 &1603288656
 Transform:
   m_ObjectHideFlags: 0

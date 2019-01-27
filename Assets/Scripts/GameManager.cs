@@ -175,15 +175,22 @@ void Update()
                 winnerText.SetActive(true);
 
                 int winner = TallyScores();
+                
                 if (winner == 1)
+                {
                     Debug.Log("Player 1 wins!"); //do winner things here
+                    winnerText.GetComponent<Text>().text = "Player 1 wins!";
+                }
+
                 else if (winner == 2)
                 {
                     Debug.Log("Player 2 wins!");
+                    winnerText.GetComponent<Text>().text = "Player 2 wins!";
                 }
                 else if (winner == 0)
                 {
                     Debug.Log("Everyone is grounded");
+                    winnerText.GetComponent<Text>().text = "Everyone is grounded!";
                 }
                 break;
             default:
