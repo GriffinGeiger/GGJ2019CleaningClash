@@ -13,13 +13,15 @@ public class InstantPrefabs : MonoBehaviour
     public static string commonThrowablePath = prefabPath + "/CommonThrowablePrefabs";
     public static string legosPath = prefabPath + "/LegosPrefabs";
     public static string socksPath = prefabPath + "/SocksPrefabs";
+    public static string draggablePath = prefabPath + "/Draggables";
 
     //Players
     public static string player1Path = prefabPath + "/Characters/Character_Player1.prefab";
     public static string player2Path = prefabPath + "/Characters/Test_Character_Player2 Variant.prefab";
 
     //Placable items
-    public static string bedPath;
+    private static string bedPath_P1 = draggablePath + "/Bed_Draggable_P1.prefab";
+    private static string bedPath_P2 = draggablePath + "/Bed_Draggable_P2.prefab";
     public static string deskPath;
     public static string fanPath;
     public static string dresserPath;
@@ -109,4 +111,21 @@ public class InstantPrefabs : MonoBehaviour
         return InstantiatePrefab(darkPath, position);
     }
 
+    //********************  Furniture **********************
+    public static GameObject SpawnBed(Vector3 position, PlayerInput.playerTag playerTag) //returns null if not player1 or 2
+    {
+        if (playerTag == PlayerInput.playerTag.Player1)
+        {
+            Debug.Log("Spawining Player1 bed");
+            return InstantiatePrefab(bedPath_P1, position);
+        }
+        else
+            if (playerTag == PlayerInput.playerTag.Player2)
+        {
+            Debug.Log("Spawning Player2 bed");
+            return InstantiatePrefab(bedPath_P2, position);
+        }
+        else
+            return null;
+    }
 }
