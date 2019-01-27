@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LavaController : MonoBehaviour
 {
-    public CharacterMovement[] players = new CharacterMovement[4];
+    public CharacterMovement[] players;
     public GameObject bed;
     public GameObject desk;
     private double timeLeft;
@@ -13,19 +13,20 @@ public class LavaController : MonoBehaviour
     void Start()
     {
         timeLeft = 10;
+        players = new CharacterMovement[2];
     }
 
     // Update is called once per frame
     void Update()
     {
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 2; i++)
         {
             if(players[i] != null)
             {
                 if(!players[i].onFurniture)
                 {
-                    players[i].Stun(3.0f);
-                    Destroy(this);
+                    players[i].Stun(2.0f);
+                    Destroy(this.gameObject);
                 }
                 
             }
@@ -34,7 +35,7 @@ public class LavaController : MonoBehaviour
         timeLeft -= Time.deltaTime;
         if(timeLeft <= 0)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }
