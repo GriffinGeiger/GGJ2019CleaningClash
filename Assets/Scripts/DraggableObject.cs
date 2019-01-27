@@ -15,7 +15,7 @@ public class DraggableObject : PlayerControlledObjects
     private Vector3 offset;
    // private ItemPlacer place = new ItemPlacer();
     public Rigidbody2D m_rigidBody;
-    private float speedFactor = 10f;
+    public float speedFactor = 10f;
 
     public override void Aim(Vector2 aimVector)
     {
@@ -25,6 +25,7 @@ public class DraggableObject : PlayerControlledObjects
 
     public override void Move(Vector2 velocity) //should be called in FixedUpdate
     {
+        Debug.Log("Moving");
         //if it is possible to move then move according to the input
         m_rigidBody.AddForce(velocity * speedFactor);
     }
@@ -33,6 +34,7 @@ public class DraggableObject : PlayerControlledObjects
     {
         placedPosition = transform.position;
         placedRotation = transform.rotation;
+        placed = true;
     }
 
 }

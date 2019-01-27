@@ -9,7 +9,6 @@ public class CharacterMovement : PlayerControlledObjects
     public Rigidbody2D m_rigidbody;
     public Transform m_aimArrowTransform;
     public SpriteRenderer m_aimArrowSprite;
-    public PlayerInput.playerTag m_playerTag; //defines which player controls this character
     public float m_speedFactor;
     public float m_arrowDistance;
     public Vector2 m_armOffset;
@@ -20,7 +19,6 @@ public class CharacterMovement : PlayerControlledObjects
     public bool onFurniture;
     public bool facingLeft;
 
-    private GameManager gm;
     [SerializeField]
     private Item m_heldItem;
     private float m_stunTime = 0;
@@ -32,8 +30,6 @@ public class CharacterMovement : PlayerControlledObjects
 
     private void Awake()
     {
-        gm = FindObjectOfType<GameManager>();
-        ConnectToPlayerInput();
         furnitureMask = LayerMask.GetMask("Furniture");
     }
 
@@ -54,25 +50,7 @@ public class CharacterMovement : PlayerControlledObjects
         else
             onFurniture = false;
     }
-    public void ConnectToPlayerInput()
-    {
-        if (m_playerTag == PlayerInput.playerTag.None)
-        {
-            Debug.LogWarning("PlayerTag set to no player. Add playerTag in prefab. Ex: Player1, Player2");
-        }
-        else
-        {
-            PlayerInput player = gm.getPlayerInput((int)m_playerTag);
-            if (player.m_controller == null)
-            {
-                player.m_controller = (PlayerControlledObjects) this;
-            }
-            else
-            {
-                Debug.LogWarning("Replacing PlayerController that is already connected to PlayerInput");
-            }
-        }
-    }
+
     public void Interact()
     {
         //check different things that can be interacted with and interact accordingly

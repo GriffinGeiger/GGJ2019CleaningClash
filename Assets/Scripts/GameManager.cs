@@ -30,16 +30,17 @@ public class GameManager : MonoBehaviour
 
     public void allowCharacterMovement()
     {
-        foreach( CharacterMovement cm in FindObjectsOfType<CharacterMovement>())
+     /*   foreach( CharacterMovement cm in FindObjectsOfType<CharacterMovement>())
         {
             cm.ConnectToPlayerInput(); //send references from characterMovements to PlayerInputs. Ex: Player1 character tells Player1's controller who it is
         }
-
+        */
         foreach (PlayerInput pi in playerInputs)
         {
             pi.allowCharacterMovement = true;
         }
     }
+
 
     public void allowCharacterMovement(int playerNumber) //overload to individually allow character movement
     {
@@ -67,8 +68,8 @@ public class GameManager : MonoBehaviour
     private bool m_player1Ready;
     private bool m_player2Ready;
 
-    SetupPlayer player1Setup = new SetupPlayer();
-    SetupPlayer player2Setup = new SetupPlayer();
+    SetupPlayer player1Setup = new SetupPlayer(PlayerInput.playerTag.Player1);
+    SetupPlayer player2Setup = new SetupPlayer(PlayerInput.playerTag.Player2);
 
 void Update()
     {
@@ -125,8 +126,8 @@ void Update()
     {
         try
         {
-            InstantPrefabs.InstantiatePrefab(InstantPrefabs.player1Path, player1SpawnLocation);
-            InstantPrefabs.InstantiatePrefab(InstantPrefabs.player2Path, player2SpawnLocation);
+            InstantPrefabs.InstantiatePrefab(InstantPrefabs.player1Path, player1SpawnLocation).GetComponent<CharacterMovement>().ConnectToPlayerInput();
+            InstantPrefabs.InstantiatePrefab(InstantPrefabs.player2Path, player2SpawnLocation).GetComponent<CharacterMovement>().ConnectToPlayerInput();
         } catch(Exception e)
         {
             Debug.LogError(e.Message);

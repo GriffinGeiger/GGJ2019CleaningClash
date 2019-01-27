@@ -9,6 +9,13 @@ public class SetupPlayer
     SetupState nextState;
     bool readyForNextFurniture = true;
     DraggableObject currentDraggable;
+    private PlayerInput.playerTag playerTag;
+
+    public SetupPlayer(PlayerInput.playerTag playerTag)
+    {
+        this.playerTag = playerTag;
+    }
+
     //Called every update during setup
     public bool PlayerSetup(Vector3 spawnLocationForItems)
     {
@@ -17,24 +24,26 @@ public class SetupPlayer
             switch (setupState)
             {
                 case SetupState.Bed:
-                    currentDraggable = InstantPrefabs.InstantiatePrefab(InstantPrefabs.bedPath, spawnLocationForItems).GetComponent<DraggableObject>();
+                    currentDraggable = InstantPrefabs.SpawnBed(spawnLocationForItems,playerTag).GetComponent<DraggableObject>();
                     nextState = SetupState.Desk;
                     break;
                 case SetupState.Desk:
-                    currentDraggable = InstantPrefabs.InstantiatePrefab(InstantPrefabs.deskPath, spawnLocationForItems).GetComponent<DraggableObject>();
+                    currentDraggable = InstantPrefabs.SpawnDesk(spawnLocationForItems).GetComponent<DraggableObject>();
                     nextState = SetupState.Fan;
                     break;
                 case SetupState.Fan:
-                    currentDraggable = InstantPrefabs.InstantiatePrefab(InstantPrefabs.fanPath, spawnLocationForItems).GetComponent<DraggableObject>();
+                    currentDraggable = InstantPrefabs.SpawnFan(spawnLocationForItems).GetComponent<DraggableObject>();
                     nextState = SetupState.Dresser;
                     break;
                 case SetupState.Dresser:
-                    currentDraggable = InstantPrefabs.InstantiatePrefab(InstantPrefabs.bedPath, spawnLocationForItems).GetComponent<DraggableObject>();
+                    currentDraggable = InstantPrefabs.SpawnDresser(spawnLocationForItems).GetComponent<DraggableObject>();
                     nextState = SetupState.Done;
                     break;
                 case SetupState.Done:
                     return true;
             }
+            if(currentDraggable!= null)
+                currentDraggable.ConnectToPlayerInput();
             readyForNextFurniture = false;
         }
 
