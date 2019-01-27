@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     }
 
     enum MatchState { Setup, Mom_Intro, Gameplay, Mom_Outro, Scoring}
-    MatchState gameState;
+    MatchState gameState = MatchState.Setup;
 // Update is called once per frame
 void Update()
     {
