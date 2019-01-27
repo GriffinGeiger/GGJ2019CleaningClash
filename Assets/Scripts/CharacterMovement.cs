@@ -12,10 +12,12 @@ public class CharacterMovement : MonoBehaviour
     public PlayerInput.playerTag m_playerTag; //defines which player controls this character
     public float m_speedFactor;
     public float m_arrowDistance;
+    public Vector2 m_armOffset;
     public float m_aimDeadZone = .1f;
     public float m_baseThrowStrength = 1f;
     public Vector2 m_topCornerOfOverlap; //offset from character transform so it follows
     public Vector2 m_bottomCornerOfOverlap; //ditto
+
 
     private GameManager gm;
     [SerializeField]
@@ -137,11 +139,11 @@ public class CharacterMovement : MonoBehaviour
             //set arrow to angle 
             float angle = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg; //find angle of aimVector in degrees
             m_aimArrowTransform.rotation = Quaternion.AngleAxis(angle, Vector3.back); //update arrow rotation
-            m_aimArrowTransform.position = transform.position +
+            m_aimArrowTransform.position = transform.position + (Vector3) m_armOffset +
                 Quaternion.AngleAxis(angle, Vector3.back) * new Vector3(m_arrowDistance, 0, 0);//update arrow position
         }
     }
-
+    
     public void Move(Vector2 velocity) //should be called in FixedUpdate
     {
 

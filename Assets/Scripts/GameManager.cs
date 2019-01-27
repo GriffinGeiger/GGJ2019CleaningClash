@@ -55,15 +55,30 @@ public class GameManager : MonoBehaviour
         playerInputs[playerNumber - 1].allowCharacterMovement = false;
     }
 
-    enum MatchStates { Setup, Mom_Intro, Gameplay, Mom_Outro, Scoring}
-
+    enum MatchState { Setup, Mom_Intro, Gameplay, Mom_Outro, Scoring}
+    MatchState gameState;
 // Update is called once per frame
 void Update()
     {
         foreach (PlayerInput pi in playerInputs)
             pi.Update();
 
-        
+        switch (gameState)
+        {
+            case MatchState.Setup:
+                break;
+            case MatchState.Mom_Intro:
+                break;
+            case MatchState.Gameplay:
+                break;
+            case MatchState.Mom_Outro:
+                break;
+            case MatchState.Scoring:
+                break;
+            default:
+                break;
+        }
+
 
     }
 
