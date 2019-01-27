@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8206838809086420915}
   - component: {fileID: 4003503670065921670}
   - component: {fileID: 761722794935882182}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Dresser_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
