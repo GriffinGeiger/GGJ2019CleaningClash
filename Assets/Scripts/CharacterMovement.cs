@@ -33,6 +33,7 @@ public class CharacterMovement : MonoBehaviour
     {
         gm = FindObjectOfType<GameManager>();
         ConnectToPlayerInput();
+        furnitureMask = LayerMask.GetMask("Furniture");
     }
 
     private void FixedUpdate()
@@ -42,7 +43,7 @@ public class CharacterMovement : MonoBehaviour
             m_heldItem.gameObject.transform.position = transform.position;
         }
     }
-    private LayerMask furnitureMask = LayerMask.GetMask("Furniture");
+    private LayerMask furnitureMask;
 
     private void Update()
     {
