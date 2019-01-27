@@ -125,8 +125,8 @@ public class EventManager : MonoBehaviour
 
     static private Vector2 maxPoint= new Vector2(8f,1f);
     static private Vector2 minPoint = new Vector2(-8f, -4.3f);
-    static private Vector2 midPoint = new Vector2(0f, -1.7f);
-    static private Vector2 dimensions = new Vector2(Mathf.Abs(minPoint.x) + maxPoint.x, Mathf.Abs(minPoint.y) + maxPoint.y);
+    static private Vector2 dimensions = new Vector2(Mathf.Abs(minPoint.x - maxPoint.x), Mathf.Abs(minPoint.y - maxPoint.y));
+    static private Vector2 midPoint = new Vector2(minPoint.x + dimensions.x/2, minPoint.y + dimensions.y/2);
     //Randomly spawns items on each team's side
     static public void SpawnItems(int amount)
     {
