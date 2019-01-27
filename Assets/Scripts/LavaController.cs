@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LavaController : MonoBehaviour
 {
-    public GameObject[] players = new GameObject[4];
+    public CharacterMovement[] players = new CharacterMovement[4];
     public GameObject bed;
     public GameObject desk;
     private double timeLeft;
@@ -22,8 +22,11 @@ public class LavaController : MonoBehaviour
         {
             if(players[i] != null)
             {
-                Collider2D[] nearbyInteractables = 
-                    Physics2D.OverlapAreaAll((Vector2)players[i].transform.position + players[i].m_topCornerOfOverlap, (Vector2)players[i].transform.position - m_bottomCornerOfOverlap);
+                if(!players[i].onBed)
+                {
+                    players[i].Stun(3.0f);
+                    Destroy(this);
+                }
             }
         }
         timeLeft -= Time.deltaTime;
