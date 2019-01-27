@@ -1081,7 +1081,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &408986464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1951,13 +1951,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Griffin
+  m_Text: 'Griffin Geiger
 
-    Lauren
+    Lauren Hoadley
 
-    Tony
+    Tony Mosolf
 
-    Eric
+    Eric efthimiadis
 
     Will Payne'
 --- !u!222 &1130931391
@@ -2027,7 +2027,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 755f0e7bed2af5c47bf691709ac5239d, type: 3}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -2038,13 +2038,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Left Stick - Move                  A - Pickup
-
-
-    Right Stick - Aim                 X - Interact
-
-
-    Right Trigger - Throw'
+  m_Text: "Left Stick - Move     Right Stick - Aim\n   \n   Left Trigger - Pickup
+    \    Right Trigger - Throw"
 --- !u!222 &1320867137
 CanvasRenderer:
   m_ObjectHideFlags: 0
