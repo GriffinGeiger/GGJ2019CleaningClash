@@ -74,6 +74,17 @@ void Update()
             case MatchState.Mom_Outro:
                 break;
             case MatchState.Scoring:
+                int winner = TallyScores();
+                if (winner == 1)
+                    Debug.Log("Player 1 wins!"); //do winner things here
+                else if (winner == 2)
+                {
+                    Debug.Log("Player 2 wins!");
+                }
+                else if (winner == 0)
+                {
+                    Debug.Log("Everyone is grounded");
+                }
                 break;
             default:
                 break;
@@ -88,5 +99,41 @@ void Update()
             pi.FixedUpdate();
     }
 
+    public int TallyScores() //returns 0 if tie, 1 if p1 wins, 2 if p2 wins
+    {
+        Item[] mess = FindObjectsOfType<Item>();
+        int Player1Mess = 0;
+        int Player2Mess = 0;
 
+        foreach(Item junk in mess)
+        {
+            if(junk.transform.position.x > 0f)
+            {
+                Player2Mess++;
+            }
+            else if (junk.transform.position.x < 0f)
+            {
+                Player1Mess++;
+            }
+            else
+            {
+                Player1Mess++;  //Nearly impossible but if exactly on zero then it counts against both. Sucks to suck
+                Player2Mess++;
+            }
+        }
+
+        Debug.Log("Player 1's filth: " + Player1Mess + "\nPlayer 2's hoard: " + Player2Mess);
+        if (Player1Mess < Player2Mess)
+        {
+            return 1;
+        }
+        else
+        if (Player1Mess > Player2Mess)
+        {
+            return 2;
+        }
+        else
+            return 0;
+
+    }
 }

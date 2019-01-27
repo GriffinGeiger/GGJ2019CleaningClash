@@ -29,6 +29,20 @@ public class GameManagerEditor : Editor
         {
             InstantPrefabs.SpawnRandomCommonThrowable(Vector3.zero);
         }
+        if (GUILayout.Button("Tally Scores"))
+        {
+            int winner = gm.TallyScores();
+            if (winner == 1)
+                Debug.Log("Player 1 wins!");
+            else if (winner == 2)
+            {
+                Debug.Log("Player 2 wins!");
+            }
+            else if (winner == 0)
+            {
+                Debug.Log("Everyone is grounded");
+            }
+        }
     }
 
 }
