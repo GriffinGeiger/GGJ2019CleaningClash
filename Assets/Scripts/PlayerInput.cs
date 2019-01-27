@@ -11,6 +11,7 @@ public class PlayerInput
     public readonly playerTag m_playerTag; 
     public CharacterMovement m_controller;
     public bool allowCharacterMovement;
+    public float m_triggerPullThreshold=.5f;
 
     private Vector2 m_leftJoystickMovement= new Vector2();
     private Vector2 m_rightJoystickMovement = new Vector2();
@@ -32,7 +33,7 @@ public class PlayerInput
         m_rightJoystickMovement.x = Input.GetAxisRaw(m_playerTag + "_Right_Stick_x");
         m_rightJoystickMovement.y = Input.GetAxisRaw(m_playerTag + "_Right_Stick_y");
         m_interactionButton     = Input.GetButtonDown( m_playerTag + "_A_Button");
-        m_throwButton = Input.GetButtonDown(m_playerTag + "_B_Button");
+        m_throwButton = Input.GetAxisRaw(m_playerTag + "_Right_Trigger") >= m_triggerPullThreshold;
 
     }
 
