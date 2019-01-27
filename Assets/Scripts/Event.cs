@@ -13,6 +13,91 @@ public class NewBehaviourScript : MonoBehaviour
 
     private Events current;
 
+    //An algorithm for using RNG to select an option from a weighted number set
+    float Choose (float[] probs)
+    {
+        float total = 0;
+        foreach (float elem in probs)
+        {
+            total += elem;
+        }
+
+        float randomPoint = Random.value * total;
+
+        for (int i=0; i < probs.Length; i++)
+        {
+            if (randomPoint < probs[i])
+            {
+                return i;
+            }
+            else
+            {
+                randomPoint -= probs[i];
+            }
+        }
+        return probs.Length - 1;
+    }
+
+    //Method for choosing a random event to be created
+    Events chooseEvent()
+    {
+        float[] probs = { 50f, 30f, 10f };
+        float choice = Choose(probs);
+        switch ((int)choice)
+        {
+            case 0:
+                return Events.Lava;
+            case 1:
+                return Events.Puppy;
+            case 2:
+                return Events.Darkness;
+            default:
+                return Events.Darkness;
+        }
+    }
+
+    //Method for choosing a random item to be created
+    Item chooseItem()
+    {
+        float[] probs = { 80f, 10f, 10f };
+        float choice = Choose(probs);
+        switch ((int)choice)
+        {
+            case 0:
+                return new Item();
+            case 1:
+                return new Socks();
+            case 2:
+                return new Legos();
+            default:
+                return new Item();
+        }
+    }
+
+    //Method for choosing a random powerup to be created
+    Powerups.PowerUp choosePowerUp()
+    {
+        float[] probs = { 10f, 10f, 10f, 10f, 10f, 1f };
+        float choice = Choose(probs);
+        switch ((int)choice)
+        {
+            case 0:
+                return Powerups.PowerUp.CellPhone;
+            case 1:
+                return Powerups.PowerUp.GasMask;
+            case 2:
+                return Powerups.PowerUp.HulkHands;
+            case 3:
+                return Powerups.PowerUp.InfinityGauntlet;
+            case 4:
+                return Powerups.PowerUp.SugarRush;
+            case 5:
+                return Powerups.PowerUp.SpawnBattery;
+            default:
+                return Powerups.PowerUp.SpawnBattery; ;
+        }
+    }
+
 
     void FloorIsLava()
     {

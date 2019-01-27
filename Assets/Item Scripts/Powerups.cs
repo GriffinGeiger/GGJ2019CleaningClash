@@ -5,30 +5,30 @@ using UnityEngine;
 
 public class Powerups : Item
 {
-    public enum Types { SugarRush, InfinityGauntlet, HulkHands, SpawnBattery, GasMask, CellPhone };
+    public enum PowerUp { SugarRush, InfinityGauntlet, HulkHands, SpawnBattery, GasMask, CellPhone };
 
-    public Types powerType;
+    public PowerUp powerType;
 
     void Activate()
     {
         switch(powerType)
         {
-            case Types.SugarRush:
+            case PowerUp.SugarRush:
                 sugarRush();
                 break;
-            case Types.InfinityGauntlet:
+            case PowerUp.InfinityGauntlet:
                 infinityGuantlet();
                 break;
-            case Types.HulkHands:
+            case PowerUp.HulkHands:
                 hulkHands();
                 break;
-            case Types.SpawnBattery:
+            case PowerUp.SpawnBattery:
                 spawnBattery();
                 break;
-            case Types.GasMask:
+            case PowerUp.GasMask:
                 gasMask();
                 break;
-            case Types.CellPhone:
+            case PowerUp.CellPhone:
                 cellPhone();
                 break;
         }
