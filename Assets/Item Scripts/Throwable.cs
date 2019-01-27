@@ -27,7 +27,6 @@ public class Throwable : Item
         if (GetComponent<Rigidbody2D>().velocity.magnitude <= stopped)
         {
             InAir = false;
-            Thrown = false;
         }
         else
         {
