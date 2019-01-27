@@ -5,24 +5,26 @@ using UnityEngine;
 public class Throwable : Item
 {
     //Indicator if object is moving through the air
+    [SerializeField]
     protected bool InAir;
 
     //Indicator if object has been thrown
+    [SerializeField]
     protected bool Thrown;
     //Zero movement vector for comparison
-    Vector2 stop = new Vector2(0, 0);
+    float stopped = .05f;
 
     //Shoots the item in the given angle with specified strength
-    void Throw (float strength, Vector2 angle)
+    public void Throw (float strength, Vector2 direction)
     {
-        GetComponent<Rigidbody2D>().isKinematic = true;
-        GetComponent<Rigidbody2D>().AddForce(angle * strength);
+        Vector2 throwForce = direction * strength;
+        GetComponent<Rigidbody2D>().AddForce(throwForce);
         Thrown = true;
     }
 
     void Update()
     {
-        if (GetComponent<Rigidbody2D>().velocity == stop)
+        if (GetComponent<Rigidbody2D>().velocity.magnitude <= stopped)
         {
             InAir = false;
         }

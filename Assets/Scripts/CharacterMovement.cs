@@ -13,10 +13,12 @@ public class CharacterMovement : MonoBehaviour
     public float m_speedFactor;
     public float m_arrowDistance;
     public float m_aimDeadZone = .1f;
+    public float m_baseThrowStrength = 1f;
     public Vector2 m_topCornerOfOverlap; //offset from character transform so it follows
     public Vector2 m_bottomCornerOfOverlap; //ditto
 
     private GameManager gm;
+    [SerializeField]
     private Item m_heldItem;
     private float m_stunTime = 0;
     private bool m_stunned = false;
@@ -31,6 +33,13 @@ public class CharacterMovement : MonoBehaviour
         ConnectToPlayerInput();
     }
 
+    private void FixedUpdate()
+    {
+        if(m_heldItem != null)
+        {
+            m_heldItem.gameObject.transform.position = transform.position;
+        }
+    }
     public void ConnectToPlayerInput()
     {
         if (m_playerTag == PlayerInput.playerTag.None)
@@ -54,7 +63,11 @@ public class CharacterMovement : MonoBehaviour
     {
         //check different things that can be interacted with and interact accordingly
         Collider2D[] nearbyInteractables =
-            Physics2D.OverlapAreaAll((Vector2) transform.position + m_topCornerOfOverlap,(Vector2) transform.position - m_bottomCornerOfOverlap);
+            Physics2D.OverlapAreaAll((Vector2) transform.position + m_topCornerOfOverlap,(Vector2) transform.position + m_bottomCornerOfOverlap);
+
+
+       // PrintInteractablesOverlappedWith(nearbyInteractables);
+
         //Note from last line: topCornerOfOverlap and bottom are offsets from position
 
         //search for highest priority pickup
@@ -90,6 +103,16 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    public void Throw()
+    {
+        if(m_heldItem is Throwable)
+        {
+            Vector2 directionVector = (m_aimArrowTransform.position - transform.position).normalized;
+            ((Throwable)m_heldItem).Throw(m_baseThrowStrength, directionVector);
+            m_heldItem = null;
+        }
+    }
+
     public void Aim(Vector2 aimVector) //Move arrow that denotes aiming
     {
         //Rotates around this (the character's) transform
@@ -121,8 +144,6 @@ public class CharacterMovement : MonoBehaviour
 
     public void Move(Vector2 velocity) //should be called in FixedUpdate
     {
-        //Used to visualize the overlap box completely unrelated to moving
-        Debug.DrawLine(transform.position + (Vector3) m_topCornerOfOverlap,transform.position - (Vector3) m_bottomCornerOfOverlap);
 
         //check status effects to see if possible to move
         if(m_stunned)
@@ -189,5 +210,24 @@ public class CharacterMovement : MonoBehaviour
             }
         }
         return highestPriority; //Went through all interactables and found highest priority
+    }
+    private void PrintInteractablesOverlappedWith(Collider2D[] cols)
+    {
+        Debug.Log("Printing Colliders");
+        foreach(Collider2D col in cols)
+        {
+            Debug.Log("gameobject" + col.gameObject);
+            if (col.gameObject.GetComponent<Throwable>() != null)
+            {
+                Debug.Log("Overlapped Throwable");
+            }
+            else Debug.Log("Overlapped something");
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawCube(transform.position, m_topCornerOfOverlap + m_bottomCornerOfOverlap);
     }
 }
