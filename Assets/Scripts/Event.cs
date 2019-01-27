@@ -40,6 +40,7 @@ public class Event : MonoBehaviour
     void WhoLetTheDogOut()
     {
         Dog puppy = new Dog();
+        //InstantPrefabs.SpawnDog(new Vector3());
     }
 
     void LightsOut()

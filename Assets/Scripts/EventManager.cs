@@ -77,8 +77,6 @@ public class EventManager : MonoBehaviour
             default:
                 return new Item();
         }
-
-
     }
 
     //Method for choosing a random powerup to be created
@@ -145,16 +143,12 @@ public class EventManager : MonoBehaviour
                         {
                             InstantPrefabs.SpawnRandomCommonThrowable(loc);
                         }
-                        /**
-                         * else if (num == 1) {
-                         *     InstantPrefabs.SpawnLegos(loc);
-                         * }
-                         * 
-                         * else{
-                         *      InstantPrefabs.SpawnSocks(loc);
-                         * }
-                         * 
-                         **/
+                        else if (num == 1) {
+                             InstantPrefabs.SpawnLegos(loc);
+                        }
+                        else{
+                             InstantPrefabs.SpawnSocks(loc);
+                        }
                         break;
                     }
                 }
@@ -178,16 +172,12 @@ public class EventManager : MonoBehaviour
 
                 if (Physics2D.OverlapCircle(loc, .5f) == null)
                 {
-
-                    /**
-                    * 
-                    * 
                     if (num == 0){
                         InstantPrefabs.SpawnSugarRush(loc);
                         break;
                     }
                     else if (num == 1){
-                        InstantPrefabs.InfinityGauntlet(loc);
+                        InstantPrefabs.SpawnInfinityGauntlet(loc);
                         break;
                     }
                     else  if (num == 2){
@@ -198,6 +188,9 @@ public class EventManager : MonoBehaviour
                         InstantPrefabs.SpawnBattery(loc);
                         break;
                     }
+                    /**
+                    * 
+                    *
                     else if (num == 0){
                         InstantPrefabs.SpawnGasMask(loc);
                         break;
@@ -220,7 +213,5 @@ public class EventManager : MonoBehaviour
     {
         Event e = new Event(chooseEvent());
         StartCoroutine("EventStart", e);
-        
-
     }
 }
