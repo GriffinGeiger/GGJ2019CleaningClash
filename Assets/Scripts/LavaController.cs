@@ -22,12 +22,14 @@ public class LavaController : MonoBehaviour
         {
             if(players[i] != null)
             {
-                if(!players[i].onBed)
+                if(!players[i].onFurniture)
                 {
                     players[i].Stun(3.0f);
                     Destroy(this);
                 }
+                
             }
+            
         }
         timeLeft -= Time.deltaTime;
         if(timeLeft <= 0)

@@ -17,7 +17,7 @@ public class CharacterMovement : MonoBehaviour
     public float m_baseThrowStrength = 1f;
     public Vector2 m_topCornerOfOverlap; //offset from character transform so it follows
     public Vector2 m_bottomCornerOfOverlap; //ditto
-
+    public bool onFurniture;
 
     private GameManager gm;
     [SerializeField]
@@ -41,6 +41,16 @@ public class CharacterMovement : MonoBehaviour
         {
             m_heldItem.gameObject.transform.position = transform.position;
         }
+    }
+    private LayerMask furnitureMask = LayerMask.GetMask("Furniture");
+
+    private void Update()
+    {
+
+        if (Physics2D.OverlapArea(m_topCornerOfOverlap, m_bottomCornerOfOverlap, furnitureMask) != null)
+            onFurniture = true;
+        else
+            onFurniture = false;
     }
     public void ConnectToPlayerInput()
     {
