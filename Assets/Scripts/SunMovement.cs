@@ -30,7 +30,7 @@ public class SunMovement : MonoBehaviour
                 transform.RotateAround(Vector3.up, Vector3.back, DegreePerSec * Time.deltaTime); //rotate sun at degreepersec rate each second
             }
         }
-        if(TimeInSec >= 60f)
+        if(TimeInSec >= 40f)
         {
             light.gameObject.GetComponent<SpriteRenderer>().sprite = morning;
         }
