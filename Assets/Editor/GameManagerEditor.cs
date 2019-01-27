@@ -21,6 +21,14 @@ public class GameManagerEditor : Editor
         {
             gm.disallowCharacterMovement();
         }
+        if(GUILayout.Button("Test spawn an item"))
+        {
+            InstantPrefabs.InstantiatePrefab(InstantPrefabs.commonThrowablePath + "/Common_Throwable.prefab", Vector3.zero);
+        }
+        if(GUILayout.Button("Spawn random common item"))
+        {
+            InstantPrefabs.SpawnRandomCommonThrowable(Vector3.zero);
+        }
     }
 
 }
