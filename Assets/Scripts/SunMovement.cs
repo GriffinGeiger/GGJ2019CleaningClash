@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class SunMovement : MonoBehaviour
 {
+
+    const float totalDegrees = 120f;
     static float TimeInSec = 180f;
-    float DegreePerSec = 120f / TimeInSec;
+    float DegreePerSec = totalDegrees/ TimeInSec;
 
+    public void StartSunTimer()
+    {
 
+    }
     // Update is called once per frame
     void Update()
     {
         // Timer for match.
         TimeInSec -= Time.deltaTime;
         if (TimeInSec > 0) { 
-            // Spin the object around the world origin at 20 degrees/second.
+
             transform.RotateAround(Vector3.up, Vector3.back, DegreePerSec * Time.deltaTime);
         }
     }
